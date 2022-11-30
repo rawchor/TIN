@@ -10,4 +10,5 @@ function validateForm() {
     const errorDateOfBirth = document.getElementById('errorBirthdate');
     const errorDighy = document.getElementById('errorDighy');
     const errorSailNumber = document.getElementById('errorSailNumber');
+    // dog
 }
