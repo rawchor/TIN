@@ -10,5 +10,22 @@ function validateForm() {
     const errorDateOfBirth = document.getElementById('errorBirthdate');
     const errorDighy = document.getElementById('errorDighy');
     const errorSailNumber = document.getElementById('errorSailNumber');
-    // dog
+
+    const errorSummary = document.getElementById('errorSummary');
+    
+    resetErrors([firstNameInput, lastNameInput, dateOfBirth, dighy, sailNumber], [errorFirstName, errorLastName, errorDateOfBirth, errorDighy, errorSailNumber], errorSummary);
+
+    // flaga zmieniana w zależności od poprawności formularza
+    let valid = true;
+
+    // check if required
+    if (!checkRequired(firstNameInput.value)) {
+        valid = false;
+        firstNameInput.classList.add("error-input");
+        errorFirstName.innerText = "Pole jest wymagane";
+    } else if (!checkTextLengthRange(firstNameInput.value, 2, 60)) {
+        valid = false;
+        firstNameInput.classList.add("error-input");
+        errorFirstName.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+    }
 }
