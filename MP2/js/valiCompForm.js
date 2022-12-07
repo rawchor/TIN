@@ -19,6 +19,7 @@ function validateForm() {
     let valid = true;
 
     // check if required
+    // firstName validation
     if (!checkRequired(firstNameInput.value)) {
         valid = false;
         firstNameInput.classList.add("error-input");
@@ -27,5 +28,49 @@ function validateForm() {
         valid = false;
         firstNameInput.classList.add("error-input");
         errorFirstName.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+    }
+
+    // firstName validation
+    if (!checkRequired(firstNameInput.value)) {
+        valid = false;
+        firstNameInput.classList.add("error-input");
+        errorFirstName.innerText = "Pole jest wymagane";
+    } else if (!checkTextLengthRange(firstNameInput.value, 2, 60)) {
+        valid = false;
+        firstNameInput.classList.add("error-input");
+        errorFirstName.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+    }
+
+    // lastName validation
+    if (!checkRequired(lastNameInput.value)) {
+        valid = false;
+        lastNameInput.classList.add("error-input");
+        errorLastName.innerText = "Pole jest wymagane";
+    } else if (!checkTextLengthRange(lastNameInput.value, 2, 60)) {
+        valid = false;
+        lastNameInput.classList.add("error-input");
+        errorLastName.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+    }
+
+    // dighy validation
+    if (!checkRequired(dighy.value)) {
+        valid = false;
+        dighy.classList.add("error-input");
+        errorDighy.innerText = "Pole jest wymagane";
+    } else if (!checkTextLengthRange(dighy.value, 2, 60)) {
+        valid = false;
+        dighy.classList.add("error-input");
+        errorDighy.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+    }
+
+    // sailNumber validation
+    if (!checkRequired(sailNumber.value)) {
+        valid = false;
+        sailNumber.classList.add("error-input");
+        errorSailNumber.innerText = "Pole jest wymagane";
+    } else if (!checkTextLengthRange(sailNumber.value, 2, 60)) {
+        valid = false;
+        sailNumber.classList.add("error-input");
+        errorSailNumber.innerText = "Pole powinno zawierać od 2 do 60 znaków";
     }
 }
