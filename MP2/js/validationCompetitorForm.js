@@ -1,13 +1,3 @@
-function resetErrors(inputs, errorTexts, errorInfo) {
-    for(let i=0; i<inputs.length; i++) {
-        inputs[i].classList.remove("error_input");
-    }
-    for(let i=0; i<errorTexts.length; i++) {
-        errorTexts[i].innerText = "";
-    }
-    errorInfo.innerText = "";
-}
-
 function validateForm() {
     const firstNameInput = document.getElementById('firstName');
     const lastNameInput = document.getElementById('lastName');
@@ -15,7 +5,7 @@ function validateForm() {
     const dighy = document.getElementById('dighy');
     const sailNumber = document.getElementById('sailNumber');
 
-    const errorFirstName = document.getElementById('errorFirstName');
+    const errorFirstName = document.getElementById('errorName');
     const errorLastName = document.getElementById('errorLastName');
     const errorDateOfBirth = document.getElementById('errorBirthdate');
     const errorDighy = document.getElementById('errorDighy');
@@ -33,59 +23,59 @@ function validateForm() {
     if (!checkRequired(firstNameInput.value)) {
         valid = false;
         firstNameInput.classList.add("error-input");
-        errorFirstName.innerText = "Pole jest wymagane";
+        errorFirstName.innerText = "Field is required";
     } else if (!checkTextLengthRange(firstNameInput.value, 2, 60)) {
         valid = false;
         firstNameInput.classList.add("error-input");
-        errorFirstName.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+        errorFirstName.innerText = "The field should contain between 2 to 60 characters";
     }
 
     // firstName validation
     if (!checkRequired(firstNameInput.value)) {
         valid = false;
         firstNameInput.classList.add("error-input");
-        errorFirstName.innerText = "Pole jest wymagane";
+        errorFirstName.innerText = "Field is required";
     } else if (!checkTextLengthRange(firstNameInput.value, 2, 60)) {
         valid = false;
         firstNameInput.classList.add("error-input");
-        errorFirstName.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+        errorFirstName.innerText = "The field should contain between 2 to 60 characters";
     }
 
     // lastName validation
     if (!checkRequired(lastNameInput.value)) {
         valid = false;
         lastNameInput.classList.add("error-input");
-        errorLastName.innerText = "Pole jest wymagane";
+        errorFirstName.innerText = "Field is required";
     } else if (!checkTextLengthRange(lastNameInput.value, 2, 60)) {
         valid = false;
         lastNameInput.classList.add("error-input");
-        errorLastName.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+        errorFirstName.innerText = "The field should contain between 2 to 60 characters";
     }
 
     // dighy validation
     if (!checkRequired(dighy.value)) {
         valid = false;
         dighy.classList.add("error-input");
-        errorDighy.innerText = "Pole jest wymagane";
+        errorFirstName.innerText = "Field is required";
     } else if (!checkTextLengthRange(dighy.value, 2, 60)) {
         valid = false;
         dighy.classList.add("error-input");
-        errorDighy.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+        errorFirstName.innerText = "The field should contain between 2 to 60 characters";
     }
 
     // sailNumber validation
     if (!checkRequired(sailNumber.value)) {
         valid = false;
         sailNumber.classList.add("error-input");
-        errorSailNumber.innerText = "Pole jest wymagane";
+        errorFirstName.innerText = "Field is required";
     } else if (!checkTextLengthRange(sailNumber.value, 2, 60)) {
         valid = false;
         sailNumber.classList.add("error-input");
-        errorSailNumber.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+        errorFirstName.innerText = "The field should contain between 2 to 60 characters";
     }
 
     if (!valid) {
-        errorsSummary.innerText = "Formularz zawiera błędy";
+        errorsSummary.innerText = "Questionare contains errors";
     }
 
     return valid;
