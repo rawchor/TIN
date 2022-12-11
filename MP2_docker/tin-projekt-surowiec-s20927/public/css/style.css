@@ -436,10 +436,6 @@ header {
 }
 
 @media all and (min-width: 400px) {
-    nav ul li {
-        flex-basis: 100%;
-    }
-
     body,
     nav,
     nav ul,
