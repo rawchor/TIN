@@ -436,6 +436,10 @@ header {
 }
 
 @media all and (min-width: 400px) {
+    nav ul li {
+        margin-right: 5px;
+    }
+    
     body,
     nav,
     nav ul,

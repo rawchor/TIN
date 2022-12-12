@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../css/style.css">
-    <title>PZŻ club membership</title>
-</head>
-<body>
-    <header>
-        <h1>PZŻ club membership</h1>
-        <img src="../../images/mobile_white.png" alt="PSKL logo" width="250" height="150">
-    </header>
-
-    
-    <nav>
-        <ul>
-            <li><a href="../../index.html">Main page</a></li>
-            <li><a href="../competitor/competitor-list.html">Competitor</a></li>
-            <li><a href="../membership/membership-list.html">Membership</a></li>
-            <li><a href="../club/club-list.html" class="active">Clubs</a></li>
-        </ul>
-    </nav>
-
+<%- include('../../fragments/header.ejs')%>
     <main>
         <h2>Clubs</h2>
         <list>
@@ -96,9 +74,4 @@
         </list>
         <p><a href="../club/club-form.html" class="button-add">Add</a></p>
     </main>
-
-    <footer>
-        Borys, Surowiec, s20927
-    </footer>
-</body>
-</html>
+<%- include('../../fragments/footer.ejs')%>

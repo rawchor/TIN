@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="../../public/images/websiteclasslogo_favicon.png" type="image/x-icon">
+
+    <title>PZŻ club membership</title>
+</head>
+<body>
+    <header>
+        <h1>PZŻ club membership</h1>
+        <img src="images/mobile_white.png" alt="PSKL logo" width="50%" height="auto">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Main page</a></li>
+            <li><a href="/competitor" class="<%= navLocation == 'competitor' ? 'active' : ''%>">Competitor</a></li>
+            <li><a href="/membership" class="<%= navLocation == 'membership' ? 'active' : ''%>">Membership</a></li>
+            <li><a href="/club" class="<%= navLocation == 'club' ? 'active' : ''%>">Clubs</a></li>
+        </ul>
+    </nav>
