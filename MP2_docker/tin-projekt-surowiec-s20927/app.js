@@ -12,6 +12,12 @@ const competitorRouter = require('./routes/competitorRoute');
 const clubRouter = require('./routes/clubRoute');
 const membershipRouter = require('./routes/membershipRoute');
 
+const sequelizeInit = require('./config/sequelize/init');
+sequelizeInit()
+    .catch(err => {
+        console.log(err);
+    });
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
