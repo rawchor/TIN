@@ -23,7 +23,7 @@ const Competitor = sequelize.define('Competitor', {
   dighy: {
     type: Sequelize.STRING,
     allowNull: true,
-    unique: true
+    unique: false,
   },
   sailNumber: {
     type: Sequelize.STRING,

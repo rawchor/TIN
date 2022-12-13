@@ -26,4 +26,4 @@ const Membership = sequelize.define('Membership', {
   }
 });
 
-module.exports = Competitor;
+module.exports = Membership;

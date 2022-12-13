@@ -27,4 +27,4 @@ const Club = sequelize.define('Club', {
   }
 });
 
-module.exports = Competitor;
+module.exports = Club;

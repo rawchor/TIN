@@ -5,10 +5,10 @@ const Club = require('../../model/sequelize/Club');
 const Membership = require('../../model/sequelize/Membership');
 
 module.exports = () => {
-    Competitor.hasMany(Membership, {as: 'membership', foreignKey: {name: 'competitor_id', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
-    Membership.belongsTo(Customer, {as: 'competitor', foreignKey: {name: 'competitor_id', allowNull: false} } );
-    Club.hasMany(Membership, {as: 'membership', foreignKey: {name: 'club_id', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
-    Membership.belongsTo(Club, {as: 'club', foreignKey: {name: 'club_id', allowNull: false} });
+    Competitor.hasMany(Membership, {as: 'memberships', foreignKey: {name: 'competitor_id', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
+    Membership.belongsTo(Competitor, {as: 'competitors', foreignKey: {name: 'competitor_id', allowNull: false} } );
+    Club.hasMany(Membership, {as: 'memberships', foreignKey: {name: 'club_id', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
+    Membership.belongsTo(Club, {as: 'clubs', foreignKey: {name: 'club_id', allowNull: false} });
 
     let allCompetitors, allClubs;
     return sequelize
@@ -19,9 +19,9 @@ module.exports = () => {
         .then(competitors => {
             if( !competitors || competitors.length == 0 ) {
                 return Competitor.bulkCreate([
-                    {name: 'Borys', surname: 'Surowiec', birthdate: '15-11-2000', dighy: 'Laser', sailNumber: '183368'},
-                    {name: 'Przemek', surname: 'Okoński', birthdate: '09-06-2003', dighy: 'Laser', sailNumber: '190758'},
-                    {name: 'Jakub', surname: 'Rosłoń', birthdate: '23-03-1995', dighy: 'Laser', sailNumber: '210000'},
+                    {name: 'Borys', surname: 'Surowiec', birthdate: '2000-11-15 00:00:00', dighy: 'Laser', sailNumber: '183368'},
+                    {name: 'Przemek', surname: 'Okoński', birthdate: '2003-06-09 00:00:00', dighy: 'Laser', sailNumber: '190758'},
+                    {name: 'Jakub', surname: 'Rosłoń', birthdate: '1995-03-23', dighy: 'Laser', sailNumber: '210000'},
                 ])
                 .then( () => {
                     return Competitor.findAll();
@@ -55,9 +55,9 @@ module.exports = () => {
         .then( memberships => {
             if( !memberships || memberships.length == 0 ) {
                 return Membership.bulkCreate([
-                    {competitor_id: allCustomers[0]._id, club_id: allClubs[0]._id, competitor: 'Borys Surowiec', club: 'Sindbad', date_from: '07-06-2022', date_to: ''},
-                    {competitor_id: allCustomers[0]._id, club_id: allClubs[0]._id, competitor: 'Przemek Okoński', club: 'Spójnia Warszawa', date_from: '07-06-2022', date_to: ''},
-                    {competitor_id: allCustomers[0]._id, club_id: allClubs[0]._id, competitor: 'Marcelina Korszon', club: 'AZS AWFiS Gdańsk', date_from: '07-06-2022', date_to: ''},
+                    {competitor_id: allCustomers[0]._id, club_id: allClubs[0]._id, competitor: 'Borys Surowiec', club: 'Sindbad', date_from: '2022-06-07', date_to: ''},
+                    {competitor_id: allCustomers[0]._id, club_id: allClubs[0]._id, competitor: 'Przemek Okoński', club: 'Spójnia Warszawa', date_from: '2022-06-07', date_to: ''},
+                    {competitor_id: allCustomers[0]._id, club_id: allClubs[0]._id, competitor: 'Marcelina Korszon', club: 'AZS AWFiS Gdańsk', date_from: '2022-06-07', date_to: ''},
                 ]);
             } else {
                 return memberships;
