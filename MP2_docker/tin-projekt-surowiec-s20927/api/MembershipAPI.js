@@ -1,6 +1,6 @@
-const MembershipRepository = require('../repository/sequelize/competitorRepository');
+const MembershipRepository = require('../repository/sequelize/membershipRepository');
 
-exports.getMemberships = (req, res, next) => {
+exports.getMembership = (req, res, next) => {
   MembershipRepository.getMemberships()
         .then(membership => {
             res.status(200).json(membership);

@@ -1,11 +1,22 @@
 const Sequelize = require('sequelize');
 
+const Membership = require('../../model/sequelize/Membership');
 const Competitor = require('../../model/sequelize/Competitor');
 const Club = require('../../model/sequelize/Club');
-const Membership = require('../../model/sequelize/Membership');
 
-exports.getMembership = () => {
-    return Membership.findAll();
+exports.getMemberships = () => {
+    return Membership.findAll(
+        {
+            include: [{
+                model: Competitor,
+                as: 'competitors'
+            },
+            {
+                model: Club,
+                as: 'clubs'
+            }
+        ]}
+    );
 };
 
 
@@ -13,12 +24,12 @@ exports.getMembershipById = (membershipId) => {
     return Membership.findByPk(membershipId, {
         include: [
             {
-                model: Membership,
-                as: 'membership'
+                model: Competitor,
+                as: 'competitors'
             },
             {
                 model: Club,
-                as: 'club'
+                as: 'clubs'
             }]
     });
 };
@@ -29,6 +40,8 @@ exports.createMembership = (data) => {
     return Membership.create({
         competitor_id: data.competitor_id,
         club_id: data.club_id,
+        competitor: data.competitor,
+        club: data.club,
         dateFrom: data.dateFrom,
         dateTo: data.dateTo
     });

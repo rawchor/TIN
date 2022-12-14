@@ -19,8 +19,8 @@ module.exports = () => {
         .then(competitors => {
             if( !competitors || competitors.length == 0 ) {
                 return Competitor.bulkCreate([
-                    {name: 'Borys', surname: 'Surowiec', birthdate: '2000-11-15 00:00:00', dighy: 'Laser', sailNumber: '183368'},
-                    {name: 'Przemek', surname: 'Okoński', birthdate: '2003-06-09 00:00:00', dighy: 'Laser', sailNumber: '190758'},
+                    {name: 'Borys', surname: 'Surowiec', birthdate: '2000-11-15', dighy: 'Laser', sailNumber: '183368'},
+                    {name: 'Przemek', surname: 'Okoński', birthdate: '2003-06-09', dighy: 'Laser', sailNumber: '190758'},
                     {name: 'Jakub', surname: 'Rosłoń', birthdate: '1995-03-23', dighy: 'Laser', sailNumber: '210000'},
                 ])
                 .then( () => {
@@ -55,12 +55,12 @@ module.exports = () => {
         .then( memberships => {
             if( !memberships || memberships.length == 0 ) {
                 return Membership.bulkCreate([
-                    {competitor_id: allCompetitors[0]._id, club_id: allClubs[0]._id, competitor: 'Borys Surowiec', club: 'Sindbad', dateFrom: '2022-06-07', dateTo: '2022-06-08'},
-                    {competitor_id: allCompetitors[0]._id, club_id: allClubs[0]._id, competitor: 'Przemek Okoński', club: 'Spójnia Warszawa', dateFrom: '2022-06-07', dateTo: '2022-06-08'},
-                    {competitor_id: allCompetitors[0]._id, club_id: allClubs[0]._id, competitor: 'Marcelina Korszon', club: 'AZS AWFiS Gdańsk', dateFrom: '2022-06-07', dateTo: '2022-06-08'},
+                    {competitor_id: allCompetitors[0]._id, club_id: allClubs[1]._id, competitor: allCompetitors[0].name+" "+allCompetitors[0].surname, club: allClubs[1].name, dateFrom: '2022-06-07', dateTo: '2022-06-08'},
+                    {competitor_id: allCompetitors[1]._id, club_id: allClubs[0]._id, competitor: allCompetitors[1].name+" "+allCompetitors[1].surname, club: allClubs[0].name, dateFrom: '2022-06-07', dateTo: '2022-06-08'},
+                    {competitor_id: allCompetitors[2]._id, club_id: allClubs[2]._id, competitor: allCompetitors[2].name+" "+allCompetitors[2].surname, club: allClubs[2].name, dateFrom: '2022-06-07', dateTo: '2022-06-08'},
                 ]);
             } else {
                 return memberships;
             }
         });
-};
+}

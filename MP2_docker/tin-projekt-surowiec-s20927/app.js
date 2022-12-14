@@ -13,8 +13,8 @@ const clubRouter = require('./routes/clubRoute');
 const membershipRouter = require('./routes/membershipRoute');
 
 const competitorApiRouter = require('./routes/api/CompetitorAPIRoute');
-//const clubApiRouter = require('./routes/api/clubAPIRoute');
-//const membershipApiRouter = require('./routes/api/membershipAPIRoute');
+const clubApiRouter = require('./routes/api/ClubAPIRoute');
+const membershipApiRouter = require('./routes/api/MembershipAPIRoute');
 
 const sequelizeInit = require('./config/sequelize/init');
 sequelizeInit()
@@ -38,8 +38,8 @@ app.use('/club', clubRouter);
 app.use('/membership', membershipRouter);
 
 app.use('/api/competitors', competitorApiRouter);
-//app.use('/api/club', clubApiRoute);
-//app.use('/api/memebrship', membershipApiRoute);
+app.use('/api/clubs', clubApiRouter);
+app.use('/api/memebrships', membershipApiRouter);
 
 
 // catch 404 and forward to error handler

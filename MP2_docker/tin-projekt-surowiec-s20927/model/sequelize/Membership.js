@@ -23,6 +23,14 @@ const Membership = sequelize.define('Membership', {
   dateTo: {
     type: Sequelize.DATEONLY,
     allowNull: true,
+  },
+  competitor_id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+  club_id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
   }
 });
 
