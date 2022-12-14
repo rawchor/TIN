@@ -55,9 +55,9 @@ module.exports = () => {
         .then( memberships => {
             if( !memberships || memberships.length == 0 ) {
                 return Membership.bulkCreate([
-                    {competitor_id: allCustomers[0]._id, club_id: allClubs[0]._id, competitor: 'Borys Surowiec', club: 'Sindbad', date_from: '2022-06-07', date_to: ''},
-                    {competitor_id: allCustomers[0]._id, club_id: allClubs[0]._id, competitor: 'Przemek Okoński', club: 'Spójnia Warszawa', date_from: '2022-06-07', date_to: ''},
-                    {competitor_id: allCustomers[0]._id, club_id: allClubs[0]._id, competitor: 'Marcelina Korszon', club: 'AZS AWFiS Gdańsk', date_from: '2022-06-07', date_to: ''},
+                    {competitor_id: allCompetitors[0]._id, club_id: allClubs[0]._id, competitor: 'Borys Surowiec', club: 'Sindbad', dateFrom: '2022-06-07', dateTo: '2022-06-08'},
+                    {competitor_id: allCompetitors[0]._id, club_id: allClubs[0]._id, competitor: 'Przemek Okoński', club: 'Spójnia Warszawa', dateFrom: '2022-06-07', dateTo: '2022-06-08'},
+                    {competitor_id: allCompetitors[0]._id, club_id: allClubs[0]._id, competitor: 'Marcelina Korszon', club: 'AZS AWFiS Gdańsk', dateFrom: '2022-06-07', dateTo: '2022-06-08'},
                 ]);
             } else {
                 return memberships;

@@ -3,12 +3,12 @@ const Club = require('../../model/sequelize/Club');
 const Membership = require('../../model/sequelize/Membership');
 
 
-exports.getCompetitors = () => {
-    return Competitor.findAll();
+exports.getClub = () => {
+    return Club.findAll();
 };
 
-exports.getCompetitorById = (competitorId) => {
-    return Competitor.findByPk(competitorId,
+exports.getClubById = (clubId) => {
+    return Club.findByPk(clubId,
         {
             include: [{
                 model: Membership,
@@ -21,17 +21,16 @@ exports.getCompetitorById = (competitorId) => {
         });
 };
 
-exports.createCompetitor = (newCompetitorData) => {
-    return Competitor.create({
-        name: newCompetitorData.name,
-        surname: newCompetitorData.surname,
-        birthdate: newCompetitorData.birthdate,
-        dighy: newCompetitorData.dighy,
-        sailNumber: newCompetitorData.sailNumber
+exports.createClub = (newClubData) => {
+    return Club.create({
+        name: newClubData.name,
+        county: newClubData.surname,
+        owner: newClubData.address,
+        budget: newClubData.zip_code
     });
 };
 
-exports.updateCompetitor = (competitorId, competitorData) => {
+exports.updateClub = (competitorId, competitorData) => {
     const name = competitorData.firstName;
     const surname = competitorData.lastName;
     const birthdate = competitorData.address;

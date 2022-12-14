@@ -17,12 +17,12 @@ const Membership = sequelize.define('Membership', {
     allowNull: false,
   },
   dateFrom: {
-    type: Sequelize.DATE,
+    type: Sequelize.DATEONLY,
     allowNull: false,
   },
   dateTo: {
-    type: Sequelize.DATE,
-    allowNull: false,
+    type: Sequelize.DATEONLY,
+    allowNull: true,
   }
 });
 

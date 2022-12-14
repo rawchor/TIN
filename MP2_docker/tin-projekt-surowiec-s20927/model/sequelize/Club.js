@@ -23,7 +23,7 @@ const Club = sequelize.define('Club', {
   budget: {
     type: Sequelize.INTEGER,
     allowNull: true,
-    unique: true
+    unique: false
   }
 });
 

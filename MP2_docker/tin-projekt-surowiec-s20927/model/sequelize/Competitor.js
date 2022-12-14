@@ -17,18 +17,19 @@ const Competitor = sequelize.define('Competitor', {
     allowNull: false,
   },
   birthdate: {
-    type: Sequelize.DATE,
+    type: Sequelize.DATEONLY,
     allowNull: false,
+    unique: false
   },
   dighy: {
     type: Sequelize.STRING,
     allowNull: true,
-    unique: false,
+    unique: false
   },
   sailNumber: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true,
+    unique: true
   }
 });
 

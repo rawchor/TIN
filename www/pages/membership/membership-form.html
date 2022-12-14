@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>PZŻ club membership</title>
+</head>
+<body>
+    <header>
+        <h1>PZŻ club membership</h1>
+        <img src="../../images/mobile_white.png" alt="PSKL logo" width="250" height="150">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../../index.html">Main page</a></li>
+            <li><a href="../../pages/competitor/competitor-list.html">Competitor</a></li>
+            <li><a href="../membership/membership-list.html" class="active">Membership</a></li>
+            <li><a href="../club/club-list.html">Clubs</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Questionare</h2>
+        <form class="form">
+            <label for="sailor-id">Sailor ID: <span class="symbol-required"></span>*</label>
+            <input type="text" name="sailor-id" id="sailor-id" required>
+            <span id="errorSailorID" class="errors-text"></span>
+
+            <label for="club-id">Club ID: <span class="symbol-required"></span>*</label>
+            <input type="text" name="club-id" id="club-id" required>
+            <span id="errorSurname"></span>
+
+            <label for="date-from">Date from: <span class="symbol-required"></span>*</label>
+            <input type="date" name="date-from" id="date-from" required>
+            <span id="errorDateFrom"></span>
+
+            <label for="date-to">Date to: <span class="symbol-required"></span>*</label>
+            <input type="date" name="date-to" id="date-to" required>
+            <span id="errorDateTo"></span>
+
+            <div class="form-buttons">
+                <p id="errorSummary"></p>
+                <input type="submit" class="form-button-submit" value="Add"/>
+                <a href="membership-list.html" class="form-button-cancel">Cancel</a>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        Borys, Surowiec, s20927
+    </footer>
+</body>
+</html>
