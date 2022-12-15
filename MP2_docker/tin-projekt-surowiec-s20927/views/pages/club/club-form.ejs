@@ -1,28 +1,70 @@
 <%- include('../../fragments/header.ejs')%>
     <main>
-        <h2>Questionare</h2>
-        <form class="form">
-            <label for="club-name">Club name: <span class="symbol-required"></span>*</label>
-            <input type="text" name="club-name" id="club-name" required>
+        <script type="application/javascript" src="/js/validationClubForm.js"></script>        
+        <h2><%= pageTitle %></h2>
+
+        <form class="form" method="post" action="<%=formAction%>" ;">
+            <input type="hidden" name="_id" id="name" value="<%= club._id %>">
+
+            <label for="name">Club name: <span class="symbol-required"></span>*</label>
+            <input type="text" name="name" id="name" placeholder="2-60 characters" value="<%= club.name %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
             <span id="errorName" class="errors-text"></span>
 
             <label for="county">County: <span class="symbol-required"></span>*</label>
-            <input type="text" name="county" id="county" required>
+            <input type="text" name="county" id="county" placeholder="2-60 characters" value="<%= club.county %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
             <span id="errorSurname"></span>
 
             <label for="owner">Owner: <span class="symbol-required"></span>*</label>
-            <input type="text" name="owner" id="owner" required>
+            <input type="text" name="owner" id="owner" placeholder="2-60 characters" value="<%= club.owner %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
             <span id="errorBirthdate"></span>
 
             <label for="budget">Budget:</span></label>
-            <input type="number" name="budget" id="budget" required>
+            <input type="text" name="budget" id="budget" placeholder="2-60 characters" value="<%= club.budget %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
             <span id="errorBirthdate"></span>
 
+            <% if (formMode == 'showDetails') { %>
+                <div class="section-buttons">
+                    <a class="list-actions-button-edit" href="/competitor/edit/<%= competitor._id %>">Edytuj</a>
+                </div>
+            <% } %>
+
             <div class="form-buttons">
-                <p id="errorSummary"></p>
-                <input type="submit" class="form-button-submit" value="Add"/>
-                <a href="club-list.html" class="form-button-cancel">Cancel</a>
+                <p id="errorSummary" class="errors-text"></p>
+                <% if (formMode != 'showDetails') { %>
+                    <input type="submit" class="form-button-submit" value="<%=btnLabel%>"/>
+                    <a href="/club" class="form-button-cancel">Cancel</a>
+                <% } else { %>
+                    <a href="/club" class="form-button-cancel">Return</a>
+                <% } %>
             </div>
         </form>
+
+        <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+            <h2>Membership details</h2>
+            
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Club</th>
+                        <th>Date from</th>
+                        <th>Date to</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <% for (let c of competitor.membership) { %>
+                        <tr>
+                            <td><a href="/membership/club-details/<%= c.club._id %>"><%= c.club.name %></a></td>
+                            <td><%= c.dateFrom.toISOString().split('T')[0] %></td>
+                            <td><%= c.dateTo ? c.dateTo.toISOString().split('T')[0] : '' %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <% } %>
     </main>
 <%- include('../../fragments/footer.ejs')%>

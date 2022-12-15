@@ -1,81 +1,41 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
         <h2>Competitors</h2>
-        <list>
-            <table class="table-list">
-                <thead>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Date of birth</th>
-                    <th>Dighy</th>
-                    <th>Sailing number</th>
-                    <th>Actions</th>
-                </thead>
+        <table class="table-list">
+            <thead>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Date of birth</th>
+                <th>Dighy</th>
+                <th>Sailing number</th>
+                <th>Actions</th>
+            </thead>
 
-                <tbody>
-                    <tr>
-                        <td>Borys</td>
-                        <td>Surowiec</td>
-                        <td>15.11.2000</td>
-                        <td>Laser</td>
-                        <td>183368</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="/competitor/details" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="/competitor/edit" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Przemek</td>
-                        <td>Okoński</td>
-                        <td>09.06.2003</td>
-                        <td>Laser</td>
-                        <td>190758</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jakub</td>
-                        <td>Rosłoń</td>
-                        <td>23.03.1995</td>
-                        <td>Laser</td>
-                        <td>210000</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>           
-        </list>
+            <tbody>
+            <% for (let competitor of competitors) { %>
+                <tr>
+                    <td><%= competitor.name %></td>
+                    <td><%= competitor.surname %></td>
+                    <td><%= competitor.birthdate %></td>
+                    <td><%= competitor.dighy %></td>
+                    <td><%= competitor.sailNumber %></td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="/competitor/details/<%competitor._id%>" class="list-actions-button-details">Details</a>
+                            </li>
+                            <li>
+                                <a href="/competitor/edit/<%competitor._id%>" class="list-actions-button-edit">Edit</a>
+                            </li>
+                            <li>
+                                <a href="/competitor/delete/<%competitor._id%>" class="list-actions-button-delete">Delete</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
         <p><a href="/competitor/add" class="button-add">Add</a></p>
     </main>
 <%- include('../../fragments/footer.ejs') %>

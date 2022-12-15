@@ -1,77 +1,39 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
         <h2>Clubs</h2>
-        <list>
-            <table class="table-list">
-                <thead>
-                    <th>Name</th>
-                    <th>County</th>
-                    <th>Owner</th>
-                    <th>Budget</th>
-                    <th>Actions</th> 
-                </thead>
+        <table class="table-list">
+            <thead>
+                <th>Name</th>
+                <th>County</th>
+                <th>Owner</th>
+                <th>Budget</th>
+                <th>Actions</th> 
+            </thead>
 
-                <tbody>
-                    <tr>
-                        <td>Fir</td>
-                        <td>Mazowieckie</td>
-                        <td>Jerzy Jodłowski</td>
-                        <td>100 000</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Sindbad</td>
-                        <td>Mazowieckie</td>
-                        <td>Jakub Rosłoń</td>
-                        <td>100 000</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="club-form-details.html" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Arka Gdynia</td>
-                        <td>Mazowieckie</td>
-                        <td>Patryk Lutomski</td>
-                        <td>50 000</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>           
-        </list>
+            <tbody>
+            <% for (let club of clubs) { %>
+                <tr>
+                    <td><%= club.name %></td>
+                    <td><%= club.county %></td>
+                    <td><%= club.owner %></td>
+                    <td><%= club.budget %></td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="/club/details/<%club._id%>" class="list-actions-button-details">Details</a>
+                            </li>
+                            <li>
+                                <a href="/club/edit/<%club._id%>" class="list-actions-button-edit">Edit</a>
+                            </li>
+                            <li>
+                                <a href="/club/delete/<%club._id%>" class="list-actions-button-delete">Delete</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>           
         <p><a href="/club/add" class="button-add">Add</a></p>
     </main>
 <%- include('../../fragments/footer.ejs') %>
