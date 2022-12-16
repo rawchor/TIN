@@ -7,68 +7,32 @@
                     <th>Competitor</th>
                     <th>Club</th>
                     <th>Date from</th>
-                    <th>Until</th>
+                    <th>Date to</th>
                     <th>Actions</th>
                 </thead>
 
                 <tbody>
+                <% for (let membership of memberships) { %>
                     <tr>
-                        <td>Borys Surowiec</td>
-                        <td>Sindbad</td>
-                        <td>07/06/2022</td>
-                        <td>&infin;</td>
+                        <td><%= membership.competitor%></td>
+                        <td><%= membership.club %></td>
+                        <td><%= membership.dateFrom %></td>
+                        <td><%= membership.dateTo %></td>
                         <td>
                             <ul class="list-actions">
                                 <li>
-                                    <a href="" class="list-actions-button-details">Details</a>
+                                    <a href="/membership/details/<%membership._id%>" class="list-actions-button-details">Details</a>
                                 </li>
                                 <li>
-                                    <a href="" class="list-actions-button-edit">Edit</a>
+                                    <a href="/membership/edit/<%membership._id%>" class="list-actions-button-edit">Edit</a>
                                 </li>
                                 <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
+                                    <a href="/membership/delete/<%membership._id%>" class="list-actions-button-delete">Delete</a>
                                 </li>
                             </ul>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Przemek Okoński</td>
-                        <td>Spójnia Warszawa</td>
-                        <td>07/06/2022</td>
-                        <td>&infin;</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Marcelina Korszon</td>
-                        <td>AZS AWFiS Gdańsk</td>
-                        <td>07/06/2022</td>
-                        <td>&infin;</td>
-                        <td>
-                            <ul class="list-actions">
-                                <li>
-                                    <a href="" class="list-actions-button-details">Details</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-edit">Edit</a>
-                                </li>
-                                <li>
-                                    <a href="" class="list-actions-button-delete">Delete</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
+                <% } %>
                 </tbody>
             </table>           
         </list>

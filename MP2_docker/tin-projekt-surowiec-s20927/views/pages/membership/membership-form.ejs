@@ -1,6 +1,7 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Questionare</h2>
+        <script type="application/javascript" src="/js/validationMembershipForm.js"></script>        
+        <h2><%= pageTitle %></h2>
         <form class="form">
             <label for="sailor-id">Sailor ID: <span class="symbol-required"></span>*</label>
             <input type="text" name="sailor-id" id="sailor-id" required>

@@ -4,19 +4,8 @@ const Membership = require('../../model/sequelize/Membership');
 const Competitor = require('../../model/sequelize/Competitor');
 const Club = require('../../model/sequelize/Club');
 
-exports.getMemberships = () => {
-    return Membership.findAll(
-        {
-            include: [{
-                model: Competitor,
-                as: 'competitors'
-            },
-            {
-                model: Club,
-                as: 'clubs'
-            }
-        ]}
-    );
+exports.getMembership = () => {
+    return Membership.findAll();
 };
 
 

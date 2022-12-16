@@ -39,7 +39,7 @@ app.use('/membership', membershipRouter);
 
 app.use('/api/competitors', competitorApiRouter);
 app.use('/api/clubs', clubApiRouter);
-app.use('/api/memebrships', membershipApiRouter);
+app.use('/api/memberships', membershipApiRouter);
 
 
 // catch 404 and forward to error handler

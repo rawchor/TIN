@@ -100,7 +100,7 @@ exports.deleteCompetitor = (req, res, next) => {
   const competitorId = req.params.competitorId;
   const competitorData = { ...req.body };
   
-  CompetitorRepository.deleteCcompetitor(competitorId)
+  CompetitorRepository.deleteCompetitor(competitorId)
       .then( () => {
           res.redirect('/competitor');
       })

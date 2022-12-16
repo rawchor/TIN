@@ -56,8 +56,8 @@ module.exports = () => {
             if( !memberships || memberships.length == 0 ) {
                 return Membership.bulkCreate([
                     {competitor_id: allCompetitors[0]._id, club_id: allClubs[1]._id, competitor: allCompetitors[0].name+" "+allCompetitors[0].surname, club: allClubs[1].name, dateFrom: '2022-06-07', dateTo: '2022-06-08'},
-                    {competitor_id: allCompetitors[1]._id, club_id: allClubs[0]._id, competitor: allCompetitors[1].name+" "+allCompetitors[1].surname, club: allClubs[0].name, dateFrom: '2022-06-07', dateTo: '2022-06-08'},
-                    {competitor_id: allCompetitors[2]._id, club_id: allClubs[2]._id, competitor: allCompetitors[2].name+" "+allCompetitors[2].surname, club: allClubs[2].name, dateFrom: '2022-06-07', dateTo: '2022-06-08'},
+                    {competitor_id: allCompetitors[1]._id, club_id: allClubs[1]._id, competitor: allCompetitors[1].name+" "+allCompetitors[1].surname, club: allClubs[2].name, dateFrom: '2022-06-07', dateTo: '2022-06-08'},
+                    {competitor_id: allCompetitors[2]._id, club_id: allClubs[2]._id, competitor: allCompetitors[2].name+" "+allCompetitors[2].surname, club: allClubs[1].name, dateFrom: '2022-06-07', dateTo: '2022-06-08'},
                 ]);
             } else {
                 return memberships;
