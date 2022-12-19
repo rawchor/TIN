@@ -1,7 +1,10 @@
 const MembershipRepository = require('../repository/sequelize/membershipRepository');
+const CompetitorRepository = require('../repository/sequelize/competitorRepository');
+const ClubRepository = require('../repository/sequelize/clubRepository');
+
 
 exports.showMembershipList = (req, res, next) => {
-    MembershipRepository.getMembership()
+    MembershipRepository.getMemberships()
         .then(membership => {
             res.render('pages/membership/membership-list', {
                 memberships: membership,
@@ -11,15 +14,37 @@ exports.showMembershipList = (req, res, next) => {
 }
 
 exports.showAddMembershipForm = (req, res, next) => {
-    res.render('pages/membership/membership-form', {
-      membership: {},
-        pageTitle: 'New membership',
-        formMode: 'createNew',
-        btnLabel: 'Add membership',
-        formAction: '/membership/add',
-        navLocation: 'membership'
-  });
+    let allCompetitors, allClubs;
+    CompetitorRepository.getCompetitors()
+        .then(competitors => {
+            allCompetitors = competitors;
+            return ClubRepository.getClubs();
+        })
+        .then(clubs => {
+            allClubs = clubs;
+            res.render('pages/membership/membership-form', {
+                membership: {},
+                formMode: 'createNew',
+                allCompetitors: allCompetitors,
+                allClubs: allClubs,
+                pageTitle: 'New membership',
+                btnLabel: 'Add membership',
+                formAction: '/membership/add',
+                navLocation: 'membership'
+            });
+        });
 }
+
+// exports.showAddMembershipForm = (req, res, next) => {
+//     res.render('pages/membership/membership-form', {
+//       membership: {},
+//         pageTitle: 'New membership',
+//         formMode: 'createNew',
+//         btnLabel: 'Add membership',
+//         formAction: '/membership/add',
+//         navLocation: 'membership'
+//   });
+// }
 
 exports.showEditMembershipForm = (req, res, next) => {
     const membershipId = req.params.membershipId;
