@@ -63,10 +63,9 @@
             <tbody>
               <% for (let c of c.membership) %>
                 <tr>
-                  <td><a href="/competitor/detail/<%= c.competitor._id %>"><%= c.club.name %></a></td>
-                  <td><a href="/competitor/detail/<%= c.competitor._id %>"><%= c.competitor.name %></a></td>
-                  <td><a href="/competitor/detail/<%= c.competitor._id %>"><%= c.competitor.name %></a></td>
-
+                  <td><a href="/competitor/details/<%= c.competitor._id %>"><%= c.club.name %></a></td>
+                  <td><a href="/competitor/details/<%= c.competitor._id %>"><%= c.competitor.name %></a></td>
+                  <td><a href="/competitor/details/<%= c.competitor._id %>"><%= c.competitor.name %></a></td>
                 </tr>
             </tbody>
         <% } %>

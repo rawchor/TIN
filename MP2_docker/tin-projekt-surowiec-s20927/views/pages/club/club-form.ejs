@@ -28,7 +28,7 @@
 
             <% if (formMode == 'showDetails') { %>
                 <div class="section-buttons">
-                    <a class="list-actions-button-edit" href="/competitor/edit/<%= competitor._id %>">Edytuj</a>
+                    <a class="list-actions-button-edit" href="/club/edit/<%= club._id %>">Edytuj</a>
                 </div>
             <% } %>
 
@@ -56,11 +56,12 @@
                 </thead>
         
                 <tbody>
-                    <% for (let c of competitor.membership) { %>
+                    <% for (let cl of club.memberships) { %>
                         <tr>
-                            <td><a href="/membership/club-details/<%= c.club._id %>"><%= c.club.name %></a></td>
-                            <td><%= c.dateFrom.toISOString().split('T')[0] %></td>
-                            <td><%= c.dateTo ? c.dateTo.toISOString().split('T')[0] : '' %></td>
+                            <td><a href="/competitor/competitor-details/<%= cl.competitor._id %>"><%= cl.competitor.name %></a></td>
+                            <!-- .toISOString().split('T')[0] -->
+                            <td><%= cl.dateFrom %></td>
+                            <td><%= cl.dateTo ? cl.dateTo : '' %></td>
                         </tr>
                     <% } %>
                 </tbody>

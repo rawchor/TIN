@@ -61,11 +61,12 @@
                 </thead>
         
                 <tbody>
-                    <% for (let c of competitor.membership) { %>
+                    <% for (let c of competitor.memberships) { %>
                         <tr>
-                            <td><a href="/membership/club-details/<%= c.club._id %>"><%= c.club.name %></a></td>
-                            <td><%= c.dateFrom.toISOString().split('T')[0] %></td>
-                            <td><%= c.dateTo ? c.dateTo.toISOString().split('T')[0] : '' %></td>
+                            <td><a href="/club/club-details/<%= c.club._id %>"><%= c.club.name %></a></td>
+                            <td><%= c.dateFrom %></td>
+                            <!-- .toISOString().split('T')[0] -->
+                            <td><%= c.dateTo ? c.dateTo : '' %></td>
                         </tr>
                     <% } %>
                 </tbody>

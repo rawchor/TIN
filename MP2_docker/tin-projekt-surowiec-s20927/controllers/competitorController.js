@@ -38,7 +38,7 @@ exports.showEditCompetitorForm = (req, res, next) => {
 
 exports.showCompetitorDetails = (req, res, next) => {
   const competitorId = req.params.competitorId;
-  CompetitorRepository.getCompetitors()
+  CompetitorRepository.getCompetitorById(competitorId)
       .then(competitor => {
           res.render('pages/competitor/competitor-form', {
               competitor: competitor,
