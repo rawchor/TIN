@@ -22,6 +22,7 @@ module.exports = () => {
                     {name: 'Borys', surname: 'Surowiec', birthdate: '2000-11-15', dighy: 'Laser', sailNumber: '183368'},
                     {name: 'Przemek', surname: 'Okoński', birthdate: '2003-06-09', dighy: 'Laser', sailNumber: '190758'},
                     {name: 'Jakub', surname: 'Rosłoń', birthdate: '1995-03-23', dighy: 'Laser', sailNumber: '210000'},
+                    {name: 'Tomek', surname: 'Kowalski', birthdate: '2000-10-10', dighy: 'Laser', sailNumber: '000000'},
                 ])
                 .then( () => {
                     return Competitor.findAll();
