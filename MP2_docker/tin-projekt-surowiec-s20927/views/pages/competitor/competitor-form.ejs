@@ -3,7 +3,7 @@
         <script type="application/javascript" src="/js/validationCompetitorForm.js"></script>        
         <h2><%= pageTitle %></h2>
 
-        <form class="form" method="post" action="<%=formAction%>" ;">
+        <form class="form" method="post" action="<%=formAction%>";">
             <input type="hidden" name="_id" id="name" value="<%= competitor._id %>">
 
             <label for="name">Name: <span class="symbol-required"></span>*</label>
@@ -33,7 +33,7 @@
 
             <% if (formMode == 'showDetails') { %>
                 <div class="section-buttons">
-                    <a class="list-actions-button-edit" href="/competitor/edit/<%= competitor._id %>">Edytuj</a>
+                    <a class="list-actions-button-edit" href="/competitor/edit/<%= competitor._id %>">Edit</a>
                 </div>
             <% } %>
 
@@ -63,7 +63,8 @@
                 <tbody>
                     <% for (let c of competitor.memberships) { %>
                         <tr>
-                            <td><a href="/club/club-details/<%= c.club._id %>"><%= c.club.name %></a></td>
+                            <td><a href="/club/club-details/<%= c.club._id %>"><%= c.club %></a></td>
+                            <!-- <td><%= c.club %></a></td> -->
                             <td><%= c.dateFrom %></td>
                             <!-- .toISOString().split('T')[0] -->
                             <td><%= c.dateTo ? c.dateTo : '' %></td>

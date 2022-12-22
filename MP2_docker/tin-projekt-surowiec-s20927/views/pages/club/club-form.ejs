@@ -23,12 +23,12 @@
 
             <label for="budget">Budget:</span></label>
             <input type="text" name="budget" id="budget" placeholder="2-60 characters" value="<%= club.budget %>"
-             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
             <span id="errorBirthdate"></span>
 
             <% if (formMode == 'showDetails') { %>
                 <div class="section-buttons">
-                    <a class="list-actions-button-edit" href="/club/edit/<%= club._id %>">Edytuj</a>
+                    <a class="list-actions-button-edit" href="/club/edit/<%= club._id %>">Edit</a>
                 </div>
             <% } %>
 
@@ -49,19 +49,21 @@
             <table class="table-list">
                 <thead>
                     <tr>
-                        <th>Club</th>
+                        <th>Competitor</th>
+                        <!-- <th>Birthdate</th> -->
                         <th>Date from</th>
                         <th>Date to</th>
                     </tr>
                 </thead>
         
                 <tbody>
-                    <% for (let cl of club.memberships) { %>
+                    <% for (let c of club.memberships) { %>
                         <tr>
-                            <td><a href="/competitor/competitor-details/<%= cl.competitor._id %>"><%= cl.competitor.name %></a></td>
+                            <td><a href="/competitor/competitor-details/<%= c.competitor._id %>"><%= c.competitor %></a></td>
                             <!-- .toISOString().split('T')[0] -->
-                            <td><%= cl.dateFrom %></td>
-                            <td><%= cl.dateTo ? cl.dateTo : '' %></td>
+                            <!-- <td><%= c.competitor.birthdate %></td> -->
+                            <td><%= c.dateFrom %></td>
+                            <td><%= c.dateTo ? c.dateTo : '' %></td>
                         </tr>
                     <% } %>
                 </tbody>

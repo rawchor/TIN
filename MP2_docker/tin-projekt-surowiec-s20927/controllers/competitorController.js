@@ -23,15 +23,17 @@ exports.showAddCompetitorForm = (req, res, next) => {
 
 exports.showEditCompetitorForm = (req, res, next) => {
     const competitorId = req.params.competitorId;
-    CompetitorRepository.getCompetitors()
+    CompetitorRepository.getCompetitorById(competitorId)
         .then(competitor => {
             res.render('pages/competitor/competitor-form', {
                 competitor: competitor,
                 formMode: 'edit',
+                pageTitle: 'Competitor Edit',
                 btnLabel: 'Edit Competitor',
                 formAction: '/competitor/edit',
                 navLocation: 'competitor',
-                validationErrors: 'competitor'
+                validationErrors: 'competitor',
+                validationErrors: []
             });
         });
 }
@@ -73,16 +75,18 @@ exports.addCompetitor = (req, res, next) => {
 exports.updateCompetitor = (req, res, next) => {
   const competitorId = req.body._id;
   const competitorData = { ...req.body };
-  let error;
+  //let error;
   
   CompetitorRepository.updateCompetitor(competitorId, competitorData)
       .then(result => {
           res.redirect('/competitor');
       })
-      .catch(err => {
-          error = err;
-          return CompetitorRepository.getCompetitorById(competitorId)
-      })
+      
+    //   .catch(err => {
+    //     error = err;
+    //     return CompetitorRepository.getCompetitorById(competitorId)
+    //   })
+
       .then(competitor => {
           res.render('pages/competitor/competitor-form', {
               competitor: competitor,
@@ -91,7 +95,7 @@ exports.updateCompetitor = (req, res, next) => {
               btnLabel: 'Edit competitor',
               formAction: '/competitor/edit',
               navLocation: 'competitor',
-              validationErrors: error.errors
+              //validationErrors: error.errors
           })
       });
 };

@@ -23,12 +23,13 @@ exports.showAddClubForm = (req, res, next) => {
 
 exports.showEditClubForm = (req, res, next) => {
     const clubId = req.params.clubId;
-    ClubRepository.getClubs()
+    ClubRepository.getClubById(clubId)
         .then(club => {
             res.render('pages/club/club-form', {
                 club: club,
                 formMode: 'edit',
                 btnLabel: 'Edit club',
+                pageTitle: 'Club Details',
                 formAction: '/club/edit',
                 navLocation: 'club',
                 validationErrors: 'club'
@@ -38,12 +39,12 @@ exports.showEditClubForm = (req, res, next) => {
 
 exports.showClubDetails = (req, res, next) => {
   const clubId = req.params.clubId;
-  ClubRepository.getClubs()
+  ClubRepository.getClubById(clubId)
       .then(club => {
           res.render('pages/club/club-form', {
               club: club,
               formMode: 'showDetails',
-              pageTitle: 'club Details',
+              pageTitle: 'Club Details',
               formAction: '',
               navLocation: 'club'
           });
@@ -65,24 +66,26 @@ exports.addClub = (req, res, next) => {
               btnLabel: 'Add club',
               formAction: '/club/add',
               navLocation: 'club',
-              validationErrors: err.errors
+              validationErrors: 'club'
           })
       });
 };
 
 exports.updateClub = (req, res, next) => {
-  const clubrId = req.body._id;
+  const clubId = req.body._id;
   const clubData = { ...req.body };
-  let error;
+  //let error;
   
   ClubRepository.updateClub(clubId, clubData)
       .then(result => {
           res.redirect('/clubs');
       })
-      .catch(err => {
-          error = err;
-          return ClubRepository.getClubById(clubId)
-      })
+
+    //   .catch(err => {
+    //       error = err;
+    //       return ClubRepository.getClubById(clubId)
+    //   })
+    
       .then(club => {
           res.render('pages/club/club-form', {
               club: club,
@@ -91,7 +94,8 @@ exports.updateClub = (req, res, next) => {
               btnLabel: 'Edit club',
               formAction: '/club/edit',
               navLocation: 'club',
-              validationErrors: error.errors
+              //validationErrors: 'club',
+              validationErrors: []
           })
       });
 };

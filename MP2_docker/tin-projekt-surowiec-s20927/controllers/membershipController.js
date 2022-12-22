@@ -8,6 +8,7 @@ exports.showMembershipList = (req, res, next) => {
         .then(membership => {
             res.render('pages/membership/membership-list', {
                 memberships: membership,
+                pageTitle: 'Membership List',
                 navLocation: 'membership'
             });
         });
@@ -15,7 +16,11 @@ exports.showMembershipList = (req, res, next) => {
 
 exports.showAddMembershipForm = (req, res, next) => {
     let allCompetitors, allClubs;
-    CompetitorRepository.getCompetitors()
+    MembershipRepository.getMemberships()
+        .then(memberships => {
+            allMemberships = memberships;
+            return CompetitorRepository.getCompetitors();
+        })
         .then(competitors => {
             allCompetitors = competitors;
             return ClubRepository.getClubs();
@@ -48,6 +53,8 @@ exports.showAddMembershipForm = (req, res, next) => {
 
 exports.showEditMembershipForm = (req, res, next) => {
     const membershipId = req.params.membershipId;
+    let allCustomers, allBooks, allRents;
+    
     MembershipRepository.getMembership()
         .then(membership => {
             res.render('pages/membership/membership-form', {
@@ -62,9 +69,9 @@ exports.showEditMembershipForm = (req, res, next) => {
 }
 
 exports.showMembershipDetails = (req, res, next) => {
-  const membershipId = req.params.membershipId;
-  MembershipRepository.getMembership()
-      .then(membership => {
+    const membershipId = req.params.membershipId;
+    MembershipRepository.getMembership()
+        .then(membership => {
           res.render('pages/membership/membership-form', {
               membership: membership,
               formMode: 'showDetails',
@@ -76,70 +83,93 @@ exports.showMembershipDetails = (req, res, next) => {
 }
 
 exports.addMembership = (req, res, next) => {
-  const membershipData = { ...req.body };
+    let allCustomers, allBooks, error;
+    const membershipData = { ...req.body };
   
-  MembershipRepository.createMembership(membershipData)
-      .then( result => {
-          res.redirect('/membership');
-      })
-      .catch(err => {
-          res.render('pages/membership/membership-form', {
-              membership: membershipData,
-              pageTitle: 'New membership',
-              formMode: 'createNew',
-              btnLabel: 'Add membership',
-              formAction: '/membership/add',
-              navLocation: 'membership',
-              validationErrors: err.errors
-          })
-      });
+    MembershipRepository.createMembership(membershipData)
+        .then(result => {
+            res.redirect('/membership');
+        })
+        .catch(err => {
+            error = err;
+            return CompetitorRepository.getCompetitors();   
+        })
+        .then(competitors => {
+            allCompetitors= competitors;
+            return ClubRepository.getClubs()
+        })
+        .then(clubs => {
+            allClubs = clubs;
+            res.render('pages/membership/membership-form', {
+                membership: {},
+                allCompetitors: allCompetitors,
+                allClubs: allClubs,
+                formMode: 'createNew',
+                pageTitle: 'Add Membership',
+                btnLabel: 'Add Membership',
+                formAction: '/membership/add',
+                navLocation: 'membership',
+                validationErrors: error.errors
+            });
+        });
+//         .catch(err => {
+//             res.render('pages/membership/membership-form', {
+//                 membership: membershipData,
+//                 pageTitle: 'New membership',
+//                 formMode: 'createNew',
+//                 btnLabel: 'Add membership',
+//                 formAction: '/membership/add',
+//                 navLocation: 'membership',
+//                 validationErrors: err.errors
+//             })
+//         });
 };
 
 exports.updateMembership = (req, res, next) => {
-  const membershipId = req.body._id;
-  const membershipData = { ...req.body };
-  let error;
-  
-  MembershipRepository.updateMembership(membershipId, membershipData)
-      .then(result => {
-          res.redirect('/membership');
-      })
-      .catch(err => {
-          error = err;
-          return MembershipRepository.getMembershipById(membershipId)
-      })
-      .then(membership => {
-          res.render('pages/membership/membership-form', {
-              membership: membership,
-              formMode: 'edit',
-              pageTitle: 'Edit membership',
-              btnLabel: 'Edit membership',
-              formAction: '/membership/edit',
-              navLocation: 'membership',
-              validationErrors: error.errors
-          })
-      });
+    const membershipId = req.body._id;
+    const membershipData = { ...req.body };
+    let error;
+    
+    MembershipRepository.updateMembership(membershipId, membershipData)
+        .then(result => {
+            res.redirect('/membership');
+        })
+        .catch(err => {
+            error = err;
+            return MembershipRepository.getMembershipById(membershipId)
+        })
+        .then(membership => {
+            res.render('pages/membership/membership-form', {
+                membership: membership,
+                formMode: 'edit',
+                pageTitle: 'Edit membership',
+                btnLabel: 'Edit membership',
+                formAction: '/membership/edit',
+                navLocation: 'membership',
+                validationErrors: error.errors
+            })
+        });
 };
 
 exports.deleteMembership = (req, res, next) => {
-  const membershipId = req.params.membershipId;
-  const membershipData = { ...req.body };
-  
-  MembershipRepository.deleteMembership(membershipId)
-      .then( () => {
-          res.redirect('/membership');
-      })
-      .catch(err => {
-          res.render('pages/membership/membership-form', {
-              membership: membershipData,
-              formMode: 'delete',
-              pageTitle: 'Delete membership',
-              btnLabel: 'Delete membership',
-              formAction: '/membership/delete',
-              navLocation: 'membership',
-              validationErrors: []
-          })
-      });
+    const membershipId = req.params.membershipId;
+    const membershipData = { ...req.body };
+    
+    MembershipRepository.deleteMembership(membershipId)
+        .then( () => {
+            res.redirect('/membership');
+        })
+        .catch(err => {
+            res.render('pages/membership/membership-form', {
+                membership: membershipData,
+                formMode: 'delete',
+                pageTitle: 'Delete membership',
+                btnLabel: 'Delete membership',
+                formAction: '/membership/delete',
+                navLocation: 'membership',
+                validationErrors: []
+            })
+        });
 };
 
 // exports.showMembershipList = (req, res, next) => {
