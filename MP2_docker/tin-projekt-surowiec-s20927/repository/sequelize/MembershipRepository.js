@@ -8,7 +8,6 @@ exports.getMemberships = () => {
     return Membership.findAll();
 };
 
-
 exports.getMembershipById = (membershipId) => {
     return Membership.findByPk(membershipId, {
         include: [

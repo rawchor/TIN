@@ -13,11 +13,6 @@
                     <option value="" selected>--- Select Competitor ---</option>
                 <% } %>
 
-                <!-- <% for (let i=0; i<allCompetitors.length; i++) { let competitor = allCompetitors[i]; %>
-                    <option value="<%= competitor._id %>" label="<%= competitor.name + ' ' + competitor.surname %>"
-                        <%= (membership._id && competitor._id.toString() == membership.competitor._id.toString()) ? 'selected' : ''%>></option>
-                <% } %> -->
-
                 <% for (let i=0; i<allCompetitors.length; i++) { let competitor = allCompetitors[i]; %>
                     <option value="<%= competitor._id %>" label="<%= competitor.name + ' ' + competitor.surname %>"
                         <%= (membership._id && competitor._id.toString() == membership.competitor._id.toString()) ? 'selected' : ''%>>

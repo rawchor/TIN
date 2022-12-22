@@ -61,7 +61,7 @@ exports.addCompetitor = (req, res, next) => {
       })
       .catch(err => {
           res.render('pages/competitor/competitor-form', {
-            competitor: competitorData,
+              competitor: competitorData,
               pageTitle: 'New Competitor',
               formMode: 'createNew',
               btnLabel: 'Add competitor',

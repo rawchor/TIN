@@ -53,12 +53,27 @@ exports.showAddMembershipForm = (req, res, next) => {
 
 exports.showEditMembershipForm = (req, res, next) => {
     const membershipId = req.params.membershipId;
-    let allCustomers, allBooks, allRents;
+    let allCompetitors, allClubs, allMemberships;
     
     MembershipRepository.getMembership()
         .then(membership => {
+            allMemberships = memberships;
+            return CompetitorRepository.getCompetitors();
+        })
+        .then(competitors => {
+            allCompetitors = competitors;
+            return ClubRepository.getClubs();
+        })
+        .then(clubs => {
+            allClubs = clubs;
+            return MembershipRepository.getMembershipById(membershipId);
+        })
+        .then(membership => {
             res.render('pages/membership/membership-form', {
                 membership: membership,
+                allCompetitors: allCompetitors,
+                allClubs: allClubs,
+                allMemberships: allMemberships,
                 formMode: 'edit',
                 btnLabel: 'Edit membership',
                 formAction: '/membership/edit',
@@ -83,47 +98,52 @@ exports.showMembershipDetails = (req, res, next) => {
 }
 
 exports.addMembership = (req, res, next) => {
-    let allCustomers, allBooks, error;
+    let allCompetitors, allClubs, error;
     const membershipData = { ...req.body };
   
-    MembershipRepository.createMembership(membershipData)
+    ClubRepository.getClubs()
+        .then(competitors => {
+            allCompetitors= competitors;
+            return ClubRepository.getClubs();
+        })
+        .then(clubs => {
+            allClubs = clubs;
+            return MembershipRepository.createMembership(membershipData);   
+        })
         .then(result => {
             res.redirect('/membership');
         })
         .catch(err => {
-            error = err;
-            return CompetitorRepository.getCompetitors();   
-        })
-        .then(competitors => {
-            allCompetitors= competitors;
-            return ClubRepository.getClubs()
-        })
-        .then(clubs => {
-            allClubs = clubs;
-            res.render('pages/membership/membership-form', {
-                membership: {},
-                allCompetitors: allCompetitors,
-                allClubs: allClubs,
-                formMode: 'createNew',
-                pageTitle: 'Add Membership',
-                btnLabel: 'Add Membership',
-                formAction: '/membership/add',
-                navLocation: 'membership',
-                validationErrors: error.errors
-            });
+            console.log(err);
         });
-//         .catch(err => {
-//             res.render('pages/membership/membership-form', {
-//                 membership: membershipData,
-//                 pageTitle: 'New membership',
-//                 formMode: 'createNew',
-//                 btnLabel: 'Add membership',
-//                 formAction: '/membership/add',
-//                 navLocation: 'membership',
-//                 validationErrors: err.errors
-//             })
-//         });
 };
+//     MembershipRepository.createMembership(membershipData)
+//         .then(competitors => {
+//             allCompetitors= competitors;
+//             return ClubRepository.getClubs();
+//         })
+//         .then(clubs => {
+//             allClubs = clubs;
+//             return CompetitorRepository.getCompetitors();   
+//         })
+//         .then(result => {
+//             res.redirect('/membership');
+//         })
+//         .catch(err => {
+//             console.log(err);
+//             //error = err;
+//             // res.render('pages/membership/membership-form', {
+//             //     membership: {},
+//             //     allCompetitors: allCompetitors,
+//             //     allClubs: allClubs,
+//             //     formMode: 'createNew',
+//             //     pageTitle: 'Add Membership',
+//             //     btnLabel: 'Add Membership',
+//             //     formAction: '/membership/add',
+//             //     navLocation: 'membership',
+//             //     //validationErrors: error.errors
+//             // });
+
 
 exports.updateMembership = (req, res, next) => {
     const membershipId = req.body._id;
