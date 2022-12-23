@@ -10,6 +10,6 @@ router.get('/details/:clubId', clubController.showClubDetails);
 
 router.post('/add', clubController.addClub); 
 router.post('/edit', clubController.updateClub);
-//router.get('/delete/:clubId', clubController.deleteClub);
+router.get('/delete/:clubId', clubController.deleteClub);
 
 module.exports = router;

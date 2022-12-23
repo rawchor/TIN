@@ -78,7 +78,7 @@ exports.updateClub = (req, res, next) => {
   
   ClubRepository.updateClub(clubId, clubData)
       .then(result => {
-          res.redirect('/clubs');
+          res.redirect('/club');
       })
 
     //   .catch(err => {
@@ -100,22 +100,22 @@ exports.updateClub = (req, res, next) => {
       });
 };
 
-exports.deleteCompetitor = (req, res, next) => {
-  const competitorId = req.params.competitorId;
-  const competitorData = { ...req.body };
+exports.deleteClub = (req, res, next) => {
+  const clubId = req.params.clubId;
+  const clubData = { ...req.body };
   
-  CompetitorRepository.deleteCcompetitor(competitorId)
+  ClubRepository.deleteClub(clubId)
       .then( () => {
-          res.redirect('/competitor');
+          res.redirect('/club');
       })
       .catch(err => {
-          res.render('pages/competitor/competitor-form', {
-            competitor: competitorData,
+          res.render('pages/club/club-form', {
+              club: clubData,
               formMode: 'delete',
-              pageTitle: 'Delete competitor',
-              btnLabel: 'Delete competitor',
-              formAction: '/competitor/delete',
-              navLocation: 'competitor',
+              pageTitle: 'Delete club',
+              btnLabel: 'Delete club',
+              formAction: '/club/delete',
+              navLocation: 'club',
               validationErrors: []
           })
       });

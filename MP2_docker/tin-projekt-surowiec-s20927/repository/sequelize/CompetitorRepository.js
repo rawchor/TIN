@@ -1,9 +1,6 @@
-const Sequelize = require('sequelize');
-
 const Competitor = require('../../model/sequelize/Competitor');
 const Club = require('../../model/sequelize/Club');
 const Membership = require('../../model/sequelize/Membership');
-
 
 exports.getCompetitors = () => {
     return Competitor.findAll();
