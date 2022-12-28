@@ -8,14 +8,6 @@ const Membership = sequelize.define('Membership', {
     allowNull: false,
     primaryKey: true
   },
-  competitor: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  club: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
   dateFrom: {
     type: Sequelize.DATEONLY,
     allowNull: false,

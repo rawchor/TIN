@@ -16,11 +16,7 @@ exports.showMembershipList = (req, res, next) => {
 
 exports.showAddMembershipForm = (req, res, next) => {
     let allCompetitors, allClubs;
-    MembershipRepository.getMemberships()
-        .then(memberships => {
-            allMemberships = memberships;
-            return CompetitorRepository.getCompetitors();
-        })
+    CompetitorRepository.getCompetitors()
         .then(competitors => {
             allCompetitors = competitors;
             return ClubRepository.getClubs();
@@ -56,7 +52,7 @@ exports.showEditMembershipForm = (req, res, next) => {
     let allCompetitors, allClubs, allMemberships;
     
     MembershipRepository.getMembership()
-        .then(membership => {
+        .then(memberships => {
             allMemberships = memberships;
             return CompetitorRepository.getCompetitors();
         })
@@ -78,28 +74,40 @@ exports.showEditMembershipForm = (req, res, next) => {
                 btnLabel: 'Edit membership',
                 formAction: '/membership/edit',
                 navLocation: 'membership',
-                validationErrors: 'membership'
+                //validationErrors: 'membership'
             });
         });
 }
 
 exports.showMembershipDetails = (req, res, next) => {
     const membershipId = req.params.membershipId;
-    MembershipRepository.getMembership()
+    let allCompetitors, allClubs;
+
+    CompetitorRepository.getCompetitors()
+        .then(competitors => {
+            allCompetitors = competitors;
+            return ClubRepository.getClubs;
+        })
+        .then(clubs => {
+            allClubs = clubs;
+            return MembershipRepository.getMembershipById(membershipId);
+        })
         .then(membership => {
-          res.render('pages/membership/membership-form', {
-              membership: membership,
-              formMode: 'showDetails',
-              pageTitle: 'Membership Details',
-              formAction: '',
-              navLocation: 'membership'
-          });
-      });
+            res.render('pages/membership/membership-form', {
+                membership: membership,
+                allCompetitors: allCompetitors,
+                allClubs: allClubs,
+                formMode: 'showDetails',
+                pageTitle: 'Membership Details',
+                formAction: '',
+                navLocation: 'membership'
+            });
+        });
 }
 
 exports.addMembership = (req, res, next) => {
-    let allCompetitors, allClubs, error;
     const membershipData = { ...req.body };
+    let allCompetitors, allClubs, error;
   
     ClubRepository.getClubs()
         .then(competitors => {
@@ -113,9 +121,9 @@ exports.addMembership = (req, res, next) => {
         .then(result => {
             res.redirect('/membership');
         })
-        .catch(err => {
-            console.log(err);
-        });
+        // .catch(err => {
+        //     console.log(err);
+        // });
 };
 //     MembershipRepository.createMembership(membershipData)
 //         .then(competitors => {

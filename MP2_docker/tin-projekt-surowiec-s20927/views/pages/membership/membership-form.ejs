@@ -7,17 +7,18 @@
             <input type="hidden" name="_id" id="name" value="<%= membership._id %>">
 
             <label for="competitor">Competitor: <span class="symbol-required"></span>*</label>
-            <select id="competitor" name="competitor" required <%= (formMode == 'showDetails') ? 'disabled' : ''%> >
+            <select id="competitor" name="competitor_id" required <%= (formMode == 'showDetails') ? 'disabled' : ''%> >
                 
                 <% if (formMode !='edit' ){ %>
-                    <option value="" selected>--- Select Competitor ---</option>
+                    <option value="" selected="selected">--- Select Competitor ---</option>
                 <% } %>
 
-                <% for (let i=0; i<allCompetitors.length; i++) { let competitor = allCompetitors[i]; %>
-                    <option value="<%= competitor._id %>" label="<%= competitor.name + ' ' + competitor.surname %>"
+                <% for (let i=0; i < allCompetitors.length; i++) { let competitor = allCompetitors[i]; %>
+                    <option value="<%= competitor._id %>" label="<%= allCompetitors[i].name + ' ' + allCompetitors[i].surname %>"
                         <%= (membership._id && competitor._id.toString() == membership.competitor._id.toString()) ? 'selected' : ''%>>
                     </option>
                 <% } %>
+
             </select>
             <span id="errorCompetitor" class="errors-text"></span>
 
@@ -25,11 +26,11 @@
             <select id="club" name="club_id" required <%= (formMode == 'showDetails') ? 'disabled' : ''%> >
                 
                 <% if (formMode !='edit' ){ %>
-                    <option value="" selected>--- Select Club ---</option>
+                    <option value="" selected="selected">--- Select Club ---</option>
                 <% } %>
 
-                <% for (let i=0; i<allClubs.length; i++) { let club = allClubs[i]; %>
-                    <option value="<%= club._id %>" label="<%= club.name %>"
+                <% for (let i=0; i < allClubs.length; i++) { let club = allClubs[i]; %>
+                    <option value="<%= club._id %>" label="<%= allClubs[i].name %>"
                         <%= (membership._id && club._id.toString() == membership.club._id.toString()) ? 'selected' : ''%>>
                     </option>
                 <% } %>
@@ -37,18 +38,14 @@
             <span id="errorClub" class="errors-text"></span>
 
             <label for="date-from">Date from: <span class="symbol-required"></span>*</label>
-            <input type="date" name="date-from" id="date-from" placeholder="2-60 characters" value="<%= membership.dateFrom %>"
+            <input type="date" name="dateFrom" id="dateFrom" placeholder="2-60 characters" value="<%= membership.dateFrom %>"
              <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
             <span id="errorDateFrom"></span>
 
             <label for="date-to">Date to: <span class="symbol-required"></span>*</label>
-            <input type="date" name="date-to" id="date-to" placeholder="2-60 characters" value="<%= membership.dateTo %>"
+            <input type="date" name="dateTo" id="dateTo" placeholder="2-60 characters" value="<%= membership.dateTo %>"
              <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
             <span id="errorDateTo"></span>
-
-            <!-- <input type="hidden" name="_id" id="name" value="<%= membership.competitor_id %>">
-
-            <input type="hidden" name="_id" id="name" value="<%= membership.club_id %>"> -->
 
             <% if (formMode == 'showDetails') { %>
                 <div class="section-buttons">

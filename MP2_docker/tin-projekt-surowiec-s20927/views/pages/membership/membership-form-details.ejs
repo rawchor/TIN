@@ -1,0 +1,73 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <script type="application/javascript" src="/js/validationMembershipForm.js"></script>        
+        <h2><%= pageTitle %></h2>
+
+        <form class="form" method="post" action="<%=formAction%>";">
+            <input type="hidden" name="_id" id="name" value="<%= membership._id %>">
+
+            <label for="competitor">Competitor: <span class="symbol-required"></span>*</label>
+            <select id="competitor" name="competitor_id" required <%= (formMode == 'showDetails') ? 'disabled' : ''%> >
+                
+                <% if (formMode !='edit' ){ %>
+                    <option value="" selected="selected">--- Select Competitor ---</option>
+                <% } %>
+
+                <% for (let i=0; i < allCompetitors.length; i++) { let competitor = allCompetitors[i]; %>
+                    <option value="<%= competitor._id %>" label="<%= allCompetitors[i].name + ' ' + allCompetitors[i].surname %>"
+                        <%= (membership._id && competitor._id.toString() == membership.competitor._id.toString()) ? 'selected' : ''%>>
+                    </option>
+                <% } %>
+
+            </select>
+            <span id="errorCompetitor" class="errors-text"></span>
+
+            <label for="club">Club: <span class="symbol-required"></span>*</label>
+            <select id="club" name="club_id" required <%= (formMode == 'showDetails') ? 'disabled' : ''%> >
+                
+                <% if (formMode !='edit' ){ %>
+                    <option value="" selected="selected">--- Select Club ---</option>
+                <% } %>
+
+                <% for (let i=0; i < allClubs.length; i++) { let club = allClubs[i]; %>
+                    <option value="<%= club._id %>" label="<%= allClubs[i].name %>"
+                        <%= (membership._id && club._id.toString() == membership.club._id.toString()) ? 'selected' : ''%>>
+                    </option>
+                <% } %>
+            </select>
+            <span id="errorClub" class="errors-text"></span>
+
+            <label for="date-from">Date from: <span class="symbol-required"></span>*</label>
+            <input type="date" name="dateFrom" id="dateFrom" placeholder="2-60 characters" value="<%= membership.dateFrom %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+            <span id="errorDateFrom"></span>
+
+            <label for="date-to">Date to: <span class="symbol-required"></span>*</label>
+            <input type="date" name="dateTo" id="dateTo" placeholder="2-60 characters" value="<%= membership.dateTo %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+            <span id="errorDateTo"></span>
+
+            <% if (formMode == 'showDetails') { %>
+                <div class="section-buttons">
+                    <a class="list-actions-button-edit" href="/membership/edit/<%= membership._id %>">Edytuj</a>
+                </div>
+            <% } %>
+
+            <div class="form-buttons">
+                <p id="errorSummary" class="errors-text"></p>
+                <% if (formMode != 'showDetails') { %>
+                    <input type="submit" class="form-button-submit" value="<%=btnLabel%>"/>
+                    <a href="/membership" class="form-button-cancel">Cancel</a>
+                <% } else { %>
+                    <a href="/membership" class="form-button-cancel">Return</a>
+                <% } %>
+            </div>
+
+            <!-- <div class="form-buttons">
+                <p id="errorSummary"></p>
+                <input type="submit" class="form-button-submit" value="Add"/>
+                <a href="membership-list.html" class="form-button-cancel">Cancel</a>
+            </div> -->
+        </form>
+    </main>
+<%- include('../../fragments/footer.ejs') %>
