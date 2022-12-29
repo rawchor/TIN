@@ -3,10 +3,10 @@
         <script type="application/javascript" src="/js/validationMembershipForm.js"></script>        
         <h2><%= pageTitle %></h2>
 
-        <form class="form" method="post" action="<%=formAction%>";">
-            <input type="hidden" name="_id" id="name" value="<%= membership._id %>">
+        <form class="form" method="post" action="<%=formAction%>" novalidate>
+            <input type="hidden" name="_id" value="<%= membership._id %>"> <!-- id="_id" -->
 
-            <label for="competitor">Competitor: <span class="symbol-required"></span>*</label>
+            <label for="competitor">Competitor: <abbr title="required" aria-label="required">*</abbr></label>
             <select id="competitor" name="competitor_id" required <%= (formMode == 'showDetails') ? 'disabled' : ''%> >
                 
                 <% if (formMode !='edit' ){ %>
@@ -14,7 +14,8 @@
                 <% } %>
 
                 <% for (let i=0; i < allCompetitors.length; i++) { let competitor = allCompetitors[i]; %>
-                    <option value="<%= competitor._id %>" label="<%= allCompetitors[i].name + ' ' + allCompetitors[i].surname %>"
+                    <!-- <option value="<%= competitor._id %>" label="<%= allCompetitors[i].name + ' ' + allCompetitors[i].surname %>" -->
+                    <option value="<%= competitor._id %>" label="<%= competitor.name + ' ' + competitor.surname %>"
                         <%= (membership._id && competitor._id.toString() == membership.competitor._id.toString()) ? 'selected' : ''%>>
                     </option>
                 <% } %>
@@ -49,7 +50,7 @@
 
             <% if (formMode == 'showDetails') { %>
                 <div class="section-buttons">
-                    <a class="list-actions-button-edit" href="/membership/edit/<%= membership._id %>">Edytuj</a>
+                    <a class="list-actions-button-edit" href="/membership/edit/<%= membership._id %>">Edit</a>
                 </div>
             <% } %>
 
@@ -62,12 +63,34 @@
                     <a href="/membership" class="form-button-cancel">Return</a>
                 <% } %>
             </div>
-
-            <!-- <div class="form-buttons">
-                <p id="errorSummary"></p>
-                <input type="submit" class="form-button-submit" value="Add"/>
-                <a href="membership-list.html" class="form-button-cancel">Cancel</a>
-            </div> -->
         </form>
+
+        <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+            <h2>Membership details</h2>
+            
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Competitor</th>
+                        <th>Club</th>
+                        <th>Date from</th>
+                        <th>Date to</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <% for (let c of competitor.memberships) { %>
+                        <tr>
+                            <!-- <td><a href="/competitor/competitor-details/<%= c.compe._id %>"><%= c.clubs.name %></a></td> -->
+                            <td><a href="/club/club-details/<%= c.clubs._id %>"><%= c.clubs.name %></a></td>
+                            <!-- <td><%= c.club %></a></td> -->
+                            <td><%= c.dateFrom %></td>
+                            <!-- .toISOString().split('T')[0] -->
+                            <td><%= c.dateTo ? c.dateTo : '' %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        <% } %>
     </main>
 <%- include('../../fragments/footer.ejs') %>

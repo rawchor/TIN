@@ -13,7 +13,7 @@ exports.showClubList = (req, res, next) => {
 exports.showAddClubForm = (req, res, next) => {
     res.render('pages/club/club-form', {
         club: {},
-        pageTitle: 'New Club',
+        pageTitle: 'New club',
         formMode: 'createNew',
         btnLabel: 'Add club',
         formAction: '/club/add',

@@ -14,20 +14,20 @@
                 <tbody>
                 <% for (let membership of memberships) { %>
                     <tr>
-                        <td><%= membership.competitors.name + " " + membership.competitors.surname%></td>
+                        <td><%= membership.competitors.name + " " + membership.competitors.surname %></td>
                         <td><%= membership.clubs.name %></td>
                         <td><%= membership.dateFrom %></td>
                         <td><%= membership.dateTo %></td>
                         <td>
                             <ul class="list-actions">
                                 <li>
-                                    <a href="/membership/details/<%membership._id%>" class="list-actions-button-details">Details</a>
+                                    <a href="/membership/details/<%= membership._id %>" class="list-actions-button-details">Details</a>
                                 </li>
                                 <li>
-                                    <a href="/membership/edit/<%membership._id%>" class="list-actions-button-edit">Edit</a>
+                                    <a href="/membership/edit/<%= membership._id %>" class="list-actions-button-edit">Edit</a>
                                 </li>
                                 <li>
-                                    <a href="/membership/delete/<%membership._id%>" class="list-actions-button-delete">Delete</a>
+                                    <a href="/membership/delete/<%= membership._id %>" class="list-actions-button-delete">Delete</a>
                                 </li>
                             </ul>
                         </td>
