@@ -2,7 +2,6 @@ const MembershipRepository = require('../repository/sequelize/membershipReposito
 const CompetitorRepository = require('../repository/sequelize/competitorRepository');
 const ClubRepository = require('../repository/sequelize/clubRepository');
 
-
 exports.showMembershipList = (req, res, next) => {
     MembershipRepository.getMemberships()
         .then(membership => {
@@ -29,7 +28,7 @@ exports.showAddMembershipForm = (req, res, next) => {
         .then(clubs => {
             allClubs = clubs;
             res.render('pages/membership/membership-form', {
-                memberships: {},
+                membership: {},
                 formMode: 'createNew',
                 allCompetitors: allCompetitors,
                 allClubs: allClubs,
@@ -39,38 +38,7 @@ exports.showAddMembershipForm = (req, res, next) => {
                 navLocation: 'membership'
         });
     });
-    // let allCompetitors, allClubs;
-    
-    // CompetitorRepository.getCompetitors()
-    //     .then(competitors => {
-    //         allCompetitors = competitors;
-    //         return ClubRepository.getClubs();
-    //     })
-    //     .then(clubs => {
-    //         allClubs = clubs;
-    //         res.render('pages/membership/membership-form', {
-    //             membership: {},
-    //             formMode: 'createNew',
-    //             allCompetitors: allCompetitors,
-    //             allClubs: allClubs,
-    //             pageTitle: 'New membership',
-    //             btnLabel: 'Add membership',
-    //             formAction: '/membership/add',
-    //             navLocation: 'membership'
-    //         });
-    //     });
 }
-
-// exports.showAddMembershipForm = (req, res, next) => {
-//     res.render('pages/membership/membership-form', {
-//       membership: {},
-//         pageTitle: 'New membership',
-//         formMode: 'createNew',
-//         btnLabel: 'Add membership',
-//         formAction: '/membership/add',
-//         navLocation: 'membership'
-//   });
-// }
 
 exports.showEditMembershipForm = (req, res, next) => {
     const membershipId = req.params.membershipId;
@@ -83,7 +51,7 @@ exports.showEditMembershipForm = (req, res, next) => {
         })
         .then(competitors => {
             allCompetitors = competitors;
-            return ClubRepository.getClubs();
+            return ClubRepository.getClubs(membershipId);
         })
         .then(clubs => {
             allClubs = clubs;
@@ -118,9 +86,9 @@ exports.showMembershipDetails = (req, res, next) => {
             allClubs = clubs;
             return MembershipRepository.getMembershipById(membershipId);
         })
-        .then(membership => {
+        .then(memberships => {
             res.render('pages/membership/membership-form', {
-                membership: membership,
+                membership: memberships,
                 allCompetitors: allCompetitors,
                 allClubs: allClubs,
                 formMode: 'showDetails',
@@ -152,33 +120,6 @@ exports.addMembership = (req, res, next) => {
         //     console.log(err);
         // });
 };
-//     MembershipRepository.createMembership(membershipData)
-//         .then(competitors => {
-//             allCompetitors= competitors;
-//             return ClubRepository.getClubs();
-//         })
-//         .then(clubs => {
-//             allClubs = clubs;
-//             return CompetitorRepository.getCompetitors();   
-//         })
-//         .then(result => {
-//             res.redirect('/membership');
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             //error = err;
-//             // res.render('pages/membership/membership-form', {
-//             //     membership: {},
-//             //     allCompetitors: allCompetitors,
-//             //     allClubs: allClubs,
-//             //     formMode: 'createNew',
-//             //     pageTitle: 'Add Membership',
-//             //     btnLabel: 'Add Membership',
-//             //     formAction: '/membership/add',
-//             //     navLocation: 'membership',
-//             //     //validationErrors: error.errors
-//             // });
-
 
 exports.updateMembership = (req, res, next) => {
     const membershipId = req.body._id;
@@ -226,15 +167,3 @@ exports.deleteMembership = (req, res, next) => {
             })
         });
 };
-
-// exports.showMembershipList = (req, res, next) => {
-//   res.render('pages/membership/membership-list', { navLocation: 'membership' });
-// }
-
-// exports.showMembershipForm = (req, res, next) => {
-//   res.render('pages/membership/membership-form', { navLocation: 'membership' });
-// }
-
-// exports.showMembershipDetails = (req, res, next) => {
-//   res.render('pages/membership/membership-details', { navLocation: 'membership' });
-// }
