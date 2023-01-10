@@ -63,7 +63,7 @@
                 <tbody>
                     <% for (let c of competitor.memberships) { %>
                         <tr>
-                            <td><a href="/club/club-details/<%= c.clubs._id %>"><%= c.clubs.name %></a></td>
+                            <td><a href="/club/club-details/<%= c.club._id %>"><%= c.club.name %></a></td>
                             <!-- <td><%= c.club %></a></td> -->
                             <td><%= c.dateFrom %></td>
                             <!-- .toISOString().split('T')[0] -->

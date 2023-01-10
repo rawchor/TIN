@@ -8,11 +8,11 @@ exports.getMemberships = () => {
     return Membership.findAll({ include: [
         {
             model: Competitor,
-            as: 'competitors'
+            as: 'competitor'
         },
         {
             model: Club,
-            as: 'clubs'
+            as: 'club'
         }]
     });
 };
@@ -21,11 +21,11 @@ exports.getMembershipById = (membershipId) => {
     return Membership.findByPk(membershipId, { include: [
         {
             model: Competitor,
-            as: 'competitors'
+            as: 'competitor'
         },
         {
             model: Club,
-            as: 'clubs'
+            as: 'club'
         }]
     });  
 };

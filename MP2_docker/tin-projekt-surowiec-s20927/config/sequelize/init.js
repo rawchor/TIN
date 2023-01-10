@@ -6,9 +6,9 @@ const Membership = require('../../model/sequelize/Membership');
 
 module.exports = () => {
     Competitor.hasMany(Membership, {as: 'memberships', foreignKey: {name: 'competitor_id', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
-    Membership.belongsTo(Competitor, {as: 'competitors', foreignKey: {name: 'competitor_id', allowNull: false} } );
+    Membership.belongsTo(Competitor, {as: 'competitor', foreignKey: {name: 'competitor_id', allowNull: false} } );
     Club.hasMany(Membership, {as: 'memberships', foreignKey: {name: 'club_id', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
-    Membership.belongsTo(Club, {as: 'clubs', foreignKey: {name: 'club_id', allowNull: false} });
+    Membership.belongsTo(Club, {as: 'club', foreignKey: {name: 'club_id', allowNull: false} });
 
     let allCompetitors, allClubs;
     return sequelize

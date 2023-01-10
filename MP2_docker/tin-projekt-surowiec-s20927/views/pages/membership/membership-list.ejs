@@ -14,8 +14,8 @@
                 <tbody>
                 <% for (let membership of memberships) { %>
                     <tr>
-                        <td><%= membership.competitors.name + " " + membership.competitors.surname %></td>
-                        <td><%= membership.clubs.name %></td>
+                        <td><%= membership.competitor.name + " " + membership.competitor.surname %></td>
+                        <td><%= membership.club.name %></td>
                         <td><%= membership.dateFrom %></td>
                         <td><%= membership.dateTo %></td>
                         <td>

@@ -80,15 +80,15 @@ exports.showMembershipDetails = (req, res, next) => {
     CompetitorRepository.getCompetitors()
         .then(competitors => {
             allCompetitors = competitors;
-            return ClubRepository.getClubs;
+            return ClubRepository.getClubs();
         })
         .then(clubs => {
             allClubs = clubs;
             return MembershipRepository.getMembershipById(membershipId);
         })
-        .then(memberships => {
+        .then(membership => {
             res.render('pages/membership/membership-form', {
-                membership: memberships,
+                membership: membership,
                 allCompetitors: allCompetitors,
                 allClubs: allClubs,
                 formMode: 'showDetails',

@@ -14,7 +14,7 @@ exports.getCompetitorById = (competitorId) => {
                 as: 'memberships',
                 include: [{
                     model: Club,
-                    as: 'clubs'
+                    as: 'club'
                 }]
             }]
         });
