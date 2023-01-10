@@ -10,6 +10,10 @@
             <input type="text" name="name" id="name" placeholder="2-60 characters" value="<%= competitor.name %>"
              <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
             <span id="errorName" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                <% } %>
+            </span>
 
             <label for="surname">Surname: <span class="symbol-required"></span>*</label>
             <input type="text" name="surname" id="surname" placeholder="2-60 characters" value="<%= competitor.surname %>"

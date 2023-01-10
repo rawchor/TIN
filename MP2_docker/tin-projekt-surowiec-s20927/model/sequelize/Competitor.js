@@ -16,8 +16,8 @@ const Competitor = sequelize.define('Competitor', {
           msg: "Field is required"
       },
       len: {
-          args: [2, 60],
-          msg: "Pole powinno zawierac od 3 do 60 znaków"
+          args: [3, 60],
+          msg: "Field should contain 3-60 characters"
       },
     }
   },
@@ -29,8 +29,8 @@ const Competitor = sequelize.define('Competitor', {
           msg: "Field is required"
       },
       len: {
-          args: [2, 60],
-          msg: "Pole powinno zawierac od 3 do 60 znaków"
+          args: [3, 60],
+          msg: "Field should contain 3-60 characters"
       },
     }
   },

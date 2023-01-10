@@ -17,7 +17,8 @@ exports.showAddCompetitorForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Add competitor',
         formAction: '/competitor/add',
-        navLocation: 'competitor'
+        navLocation: 'competitor',
+        validationErrors: []
   });
 }
 
@@ -47,7 +48,8 @@ exports.showCompetitorDetails = (req, res, next) => {
               formMode: 'showDetails',
               pageTitle: 'Competitor Details',
               formAction: '',
-              navLocation: 'competitor'
+              navLocation: 'competitor',
+              validationErrors: []
           });
       });
 }
@@ -75,18 +77,16 @@ exports.addCompetitor = (req, res, next) => {
 exports.updateCompetitor = (req, res, next) => {
   const competitorId = req.body._id;
   const competitorData = { ...req.body };
-  //let error;
+  let error;
   
   CompetitorRepository.updateCompetitor(competitorId, competitorData)
       .then(result => {
           res.redirect('/competitor');
       })
-      
-    //   .catch(err => {
-    //     error = err;
-    //     return CompetitorRepository.getCompetitorById(competitorId)
-    //   })
-
+      .catch(err => {
+        error = err;
+        return CompetitorRepository.getCompetitorById(competitorId)
+      })
       .then(competitor => {
           res.render('pages/competitor/competitor-form', {
               competitor: competitor,
@@ -95,7 +95,7 @@ exports.updateCompetitor = (req, res, next) => {
               btnLabel: 'Edit competitor',
               formAction: '/competitor/edit',
               navLocation: 'competitor',
-              //validationErrors: error.errors
+              validationErrors: error.errors
           })
       });
 };
