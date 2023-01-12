@@ -17,7 +17,8 @@ exports.showAddClubForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Add club',
         formAction: '/club/add',
-        navLocation: 'club'
+        navLocation: 'club',
+        validationErrors: []
   });
 }
 
@@ -32,7 +33,8 @@ exports.showEditClubForm = (req, res, next) => {
                 pageTitle: 'Club Details',
                 formAction: '/club/edit',
                 navLocation: 'club',
-                validationErrors: 'club'
+                validationErrors: 'club',
+                validationErrors: []
             });
         });
 }
@@ -46,7 +48,8 @@ exports.showClubDetails = (req, res, next) => {
               formMode: 'showDetails',
               pageTitle: 'Club Details',
               formAction: '',
-              navLocation: 'club'
+              navLocation: 'club',
+              validationErrors: []
           });
       });
 }
@@ -66,7 +69,7 @@ exports.addClub = (req, res, next) => {
               btnLabel: 'Add club',
               formAction: '/club/add',
               navLocation: 'club',
-              validationErrors: 'club'
+              validationErrors: err.errors
           })
       });
 };
@@ -80,12 +83,10 @@ exports.updateClub = (req, res, next) => {
       .then(result => {
           res.redirect('/club');
       })
-
-    //   .catch(err => {
-    //       error = err;
-    //       return ClubRepository.getClubById(clubId)
-    //   })
-    
+      .catch(err => {
+          error = err;
+          return ClubRepository.getClubById(clubId)
+      })
       .then(club => {
           res.render('pages/club/club-form', {
               club: club,
@@ -94,8 +95,7 @@ exports.updateClub = (req, res, next) => {
               btnLabel: 'Edit club',
               formAction: '/club/edit',
               navLocation: 'club',
-              //validationErrors: 'club',
-              validationErrors: []
+              validationErrors: err.errors
           })
       });
 };

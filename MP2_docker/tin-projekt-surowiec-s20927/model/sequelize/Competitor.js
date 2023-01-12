@@ -50,8 +50,8 @@ const Competitor = sequelize.define('Competitor', {
     unique: false,
     validate: {
       len: {
-          args: [2, 60],
-          msg: "Field should contain 2-60 characters"
+          args: [3, 60],
+          msg: "Field should contain 3-60 characters"
       },
     }
   },

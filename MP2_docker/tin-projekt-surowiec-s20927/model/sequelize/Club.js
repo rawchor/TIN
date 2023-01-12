@@ -11,19 +11,55 @@ const Club = sequelize.define('Club', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: {
+          msg: "Field is required"
+      },
+      len: {
+          args: [3, 60],
+          msg: "Field should contain 3-60 characters"
+      },
+    }
   },
   county: {
     type: Sequelize.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: {
+          msg: "Field is required"
+      },
+      len: {
+          args: [3, 60],
+          msg: "Field should contain 3-60 characters"
+      },
+    }
   },
   owner: {
     type: Sequelize.STRING,
     allowNull: true,
+    validate: {
+      notEmpty: {
+          msg: "Field is required"
+      },
+      len: {
+          args: [3, 60],
+          msg: "Field should contain 3-60 characters"
+      },
+    }
   },
   budget: {
     type: Sequelize.INTEGER,
     allowNull: true,
-    unique: false
+    unique: false,
+    validate: {
+      notEmpty: {
+          msg: "Field is required"
+      },
+      len: {
+          args: [3, 60],
+          msg: "Field should contain 3-60 characters"
+      },
+    }
   }
 });
 

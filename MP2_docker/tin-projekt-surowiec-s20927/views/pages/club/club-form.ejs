@@ -7,24 +7,40 @@
             <input type="hidden" name="_id" id="name" value="<%= club._id %>">
 
             <label for="name">Club name: <span class="symbol-required"></span>*</label>
-            <input type="text" name="name" id="name" placeholder="2-60 characters" value="<%= club.name %>"
+            <input type="text" name="name" id="name" placeholder="3-60 characters" value="<%= club.name %>" class="<%= validationErrors.find(e=>e.path.includes('name')) ? 'error-input' : '' %>"
              <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
             <span id="errorName" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                <% } %>
+            </span>
 
             <label for="county">County: <span class="symbol-required"></span>*</label>
-            <input type="text" name="county" id="county" placeholder="2-60 characters" value="<%= club.county %>"
+            <input type="text" name="county" id="county" placeholder="3-60 characters" value="<%= club.county %>" class="<%= validationErrors.find(e=>e.path.includes('county')) ? 'error-input' : '' %>"
              <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
-            <span id="errorSurname"></span>
+            <span id="errorCounty" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                <% } %>
+            </span>
 
             <label for="owner">Owner: <span class="symbol-required"></span>*</label>
-            <input type="text" name="owner" id="owner" placeholder="2-60 characters" value="<%= club.owner %>"
+            <input type="text" name="owner" id="owner" placeholder="3-60 characters" value="<%= club.owner %>" class="<%= validationErrors.find(e=>e.path.includes('owner')) ? 'error-input' : '' %>"
              <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
-            <span id="errorBirthdate"></span>
+            <span id="errorOwner" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                <% } %>
+            </span>
 
             <label for="budget">Budget:</span></label>
-            <input type="text" name="budget" id="budget" placeholder="2-60 characters" value="<%= club.budget %>"
+            <input type="text" name="budget" id="budget" placeholder="3-60 characters" value="<%= club.budget %>" class="<%= validationErrors.find(e=>e.path.includes('budget')) ? 'error-input' : '' %>"
              <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
-            <span id="errorBirthdate"></span>
+            <span id="errorBudget" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                <% } %>
+            </span>
 
             <% if (formMode == 'showDetails') { %>
                 <div class="section-buttons">
