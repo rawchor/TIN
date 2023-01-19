@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <script type="application/javascript" src="../../js/validationCommon.js"></script>
+    <script type="application/javascript" src="../../js/validationCompetitorForm.js"></script>
+
+    <title>PZŻ club membership</title>
+</head>
+<body>
+    <header>
+        <h1>PZŻ club membership</h1>
+        <img src="../../images/mobile_white.png" alt="PSKL logo">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../../index.html">Main page</a></li>
+            <li><a href="competitor-list.html" class="active">Competitor</a></li>
+            <li><a href="../membership/membership-list.html">Membership</a></li>
+            <li><a href="../club/club-list.html">Clubs</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Questionare</h2>
+        <form class="form">
+            <label for="name">Name: <span class="symbol-required">*</span></label>
+            <input type="text" name="name" id="name" class="error-input" required>
+            <span id="errorName" class="errors-text">Field is required</span>
+
+            <label for="surname">Surname: <span class="symbol-required">*</span></label>
+            <input type="text" name="surname" id="surname" class="error-input" required>
+            <span id="errorSurname" class="errors-text">Field is required</span>
+
+            <label for="birthdate">Date of Birth: <span class="symbol-required">*</span></label>
+            <input type="date" name="birthdate" id="birthdate" class="error-input" required>
+            <span id="errorBirthdate" class="errors-text">Field is required</span>
+
+            <label for="dighy">Dighy:</label>
+            <input type="text" name="dighy" id="dighy" class="error-input">
+            <span id="errorDighy" class="errors-text"></span>
+
+            <label for="sailNumber">Sail number:</label>
+            <input type="number" name="sailNumber" id="sailNumber" class="error-input">
+            <span id="errorSailNumber" class="errors-text"></span>
+
+            <div class="form-buttons">
+                <p id="errorSummary" class="errors-text">Form contains errors</p>
+                <input type="submit" class="form-button-submit" value="Add"/>
+                <a href="" class="form-button-cancel">Cancel</a>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        Borys, Surowiec, s20927
+    </footer>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<%- include('../../fragments/header.ejs')%>
+    <main>
+        <script type="application/javascript" src="/js/validationCompetitorForm.js"></script>        
+        <h2><%= pageTitle %></h2>
+
+        <form class="form" method="post" action="<%=formAction%>" novalidate>
+            <input type="hidden" name="_id" id="name" value="<%= competitor._id %>">
+
+            <label for="name">Name: <span class="symbol-required"></span>*</label>
+            <input type="text" name="name" id="name" placeholder="3-60 characters" value="<%= competitor.name %>" class="<%= validationErrors.find(e=>e.path.includes('name')) ? 'error-input' : '' %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+            <span id="errorName" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                <% } %>
+            </span>
+
+            <label for="surname">Surname: <span class="symbol-required"></span>*</label>
+            <input type="text" name="surname" id="surname" placeholder="3-60 characters" value="<%= competitor.surname %>" class="<%= validationErrors.find(e=>e.path.includes('surname')) ? 'error-input' : '' %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+            <span id="errorSurname" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('surname'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('surname')).message %>
+                <% } %>
+            </span>
+
+            <label for="email">Email: <span class="symbol-required"></span>*</label>
+            <input type="text" name="email" id="email" placeholder="3-60 characters" value="<%= competitor.email %>" class="<%= validationErrors.find(e=>e.path.includes('email')) ? 'error-input' : '' %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+            <span id="errorEmail" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('email'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('email')).message %>
+                <% } %>
+            </span>
+
+            <label for="birthdate">Date of Birth: <span class="symbol-required"></span>*</label>
+            <input type="date" name="birthdate" id="birthdate" value="<%= competitor.birthdate %>" class="<%= validationErrors.find(e=>e.path.includes('birthdate')) ? 'error-input' : '' %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+            <span id="errorBirthdate" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('birthdate'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('birthdate')).message %>
+                <% } %>
+            </span>
+
+            <label for="dighy">Dighy:</label>
+            <input type="text" name="dighy" id="dighy" placeholder="3-60 characters" value="<%= competitor.dighy %>" class="<%= validationErrors.find(e=>e.path.includes('dighy')) ? 'error-input' : '' %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+            <span id="errorDighy" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('dighy'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('dighy')).message %>
+                <% } %>
+            </span>
+
+            <label for="sailNumber">Sail number:</label>
+            <input type="number" name="sailNumber" id="sailNumber" placeholder="1-6 numbers" value="<%= competitor.sailNumber %>" class="<%= validationErrors.find(e=>e.path.includes('sailNumber')) ? 'error-input' : '' %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+            <span id="errorSailNumber" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('sailNumber'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('sailNumber')).message %>
+                <% } %>
+            </span>
+
+            <% if (formMode == 'showDetails') { %>
+                <div class="section-buttons">
+                    <a class="list-actions-button-edit" href="/competitor/edit/<%= competitor._id %>">Edit</a>
+                </div>
+            <% } %>
+
+            <div class="form-buttons">
+                <p id="errorSummary" class="errors-text"></p>
+                <% if (formMode != 'showDetails') { %>
+                    <input type="submit" class="form-button-submit" value="<%=btnLabel%>"/>
+                    <a href="/competitor" class="form-button-cancel">Cancel</a>
+                <% } else { %>
+                    <a href="/competitor" class="form-button-cancel">Return</a>
+                <% } %>
+            </div>
+        </form>
+
+        <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+            <h2>Membership details</h2>
+            
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Club</th>
+                        <th>Date from</th>
+                        <th>Date to</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <% for (let c of competitor.memberships) { %>
+                        <tr>
+                            <td><a href="/club/club-details/<%= c.club._id %>"><%= c.club.name %></a></td>
+                            <!-- <td><%= c.club %></a></td> -->
+                            <td><%= c.dateFrom %></td>
+                            <!-- .toISOString().split('T')[0] -->
+                            <td><%= c.dateTo ? c.dateTo : '' %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        <% } %>
+    </main>
+<%- include('../../fragments/footer.ejs')%>

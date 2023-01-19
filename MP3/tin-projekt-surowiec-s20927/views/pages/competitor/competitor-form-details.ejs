@@ -1,0 +1,73 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2><%= pageTitle %></h2>
+        <form class="form" method="post" action="<%=formAction%>" ;">
+          <input type="hidden" name="_id" id="name" value="<%= competitor._id %>">
+
+          <label for="name">Name: <span class="symbol-required"></span>*</label>
+          <input type="text" name="name" id="name" placeholder="2-60 characters" value="<%= competitor.name %>"
+           <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+          <span id="errorName" class="errors-text"></span>
+
+          <label for="surname">Surname: <span class="symbol-required"></span>*</label>
+          <input type="text" name="surname" id="surname" placeholder="2-60 characters" value="<%= competitor.surname %>"
+           <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+          <span id="errorSurname"></span>
+
+          <label for="birthdate">Date of Birth: <span class="symbol-required"></span>*</label>
+          <input type="date" name="birthdate" id="birthdate" value="<%= competitor.birthdate %>"
+           <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+          <span id="errorBirthdate"></span>
+
+          <label for="dighy">Dighy:</label>
+          <input type="text" name="dighy" id="dighy" placeholder="2-60 characters" value="<%= competitor.dighy %>"
+           <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+          <span id="errorDighy"></span>
+
+          <label for="sailNumber">Sail number:</label>
+          <input type="number" name="sailNumber" id="sailNumber" placeholder="1-6 numbers" value="<%= competitor.sailNumber %>"
+           <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+          <span id="errorSailNumber"></span>
+
+          <% if (formMode == 'showDetails') { %>
+              <div class="section-buttons">
+                  <a class="list-actions-button-edit" href="/competitor/edit/<%= competitor._id %>">Edytuj</a>
+              </div>
+          <% } %>
+
+          <div class="form-buttons">
+              <p id="errorSummary" class="errors-text"></p>
+              <% if (formMode != 'showDetails') { %>
+                  <input type="submit" class="form-button-submit" value="<%=btnLabel%>"/>
+                  <a href="/competitor" class="form-button-cancel">Cancel</a>
+              <% } else { %>
+                  <a href="/competitor" class="form-button-cancel">Return</a>
+              <% } %>
+          </div>
+      </form>
+
+        
+        <%- if (formMode == 'showDetails' || formMode == 'edit') { %>
+          <h2>Competitor details</h2>
+          <table class="table-list">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Date of birth</th>
+                <th>Dighy</th>
+                <th>Sailing number</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% for (let c of c.membership) %>
+                <tr>
+                  <td><a href="/competitor/details/<%= c.competitor._id %>"><%= c.club.name %></a></td>
+                  <td><a href="/competitor/details/<%= c.competitor._id %>"><%= c.competitor.name %></a></td>
+                  <td><a href="/competitor/details/<%= c.competitor._id %>"><%= c.competitor.name %></a></td>
+                </tr>
+            </tbody>
+        <% } %>
+    </main>
+<%- include('../../fragments/footer.ejs') %>

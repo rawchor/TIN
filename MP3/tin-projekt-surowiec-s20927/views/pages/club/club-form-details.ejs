@@ -1,0 +1,96 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2><%= pageTitle %></h2>
+        <form class="form">
+            <label for="club-name">Club name: <span class="symbol-required"></span>*</label>
+            <input type="text" name="club-name" id="club-name" value="Sindbad" disabled required>
+            <span id="errorName" class="errors-text"></span>
+
+            <label for="county">County: <span class="symbol-required"></span>*</label>
+            <input type="text" name="county" id="county" value="Mazowieckie" disabled required>
+            <span id="errorSurname"></span>
+
+            <label for="owner">Owner: <span class="symbol-required"></span>*</label>
+            <input type="text" name="owner" id="owner" value="Jakub Rosłoń" disabled required>
+            <span id="errorBirthdate"></span>
+
+            <label for="budget">Budget:</span></label>
+            <input type="number" name="budget" id="budget" value="100 000" disabled required>
+            <span id="errorBirthdate"></span>
+        </form>
+
+        <h2>Membership</h2>
+        <list>
+            <table class="table-list">
+                <thead>
+                    <th>Competitor</th>
+                    <th>Club</th>
+                    <th>Date from</th>
+                    <th>Until</th>
+                    <th>Actions</th>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Borys Surowiec</td>
+                        <td>Sindbad</td>
+                        <td>07/06/2022</td>
+                        <td>&infin;</td>
+                        <td>
+                            <ul class="list-actions">
+                                <li>
+                                    <a href="" class="list-actions-button-details">Details</a>
+                                </li>
+                                <li>
+                                    <a href="" class="list-actions-button-edit">Edit</a>
+                                </li>
+                                <li>
+                                    <a href="" class="list-actions-button-delete">Delete</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Przemek Okoński</td>
+                        <td>Spójnia Warszawa</td>
+                        <td>07/06/2022</td>
+                        <td>&infin;</td>
+                        <td>
+                            <ul class="list-actions">
+                                <li>
+                                    <a href="" class="list-actions-button-details">Details</a>
+                                </li>
+                                <li>
+                                    <a href="" class="list-actions-button-edit">Edit</a>
+                                </li>
+                                <li>
+                                    <a href="" class="list-actions-button-delete">Delete</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Marcelina Korszon</td>
+                        <td>AZS AWFiS Gdańsk</td>
+                        <td>07/06/2022</td>
+                        <td>&infin;</td>
+                        <td>
+                            <ul class="list-actions">
+                                <li>
+                                    <a href="" class="list-actions-button-details">Details</a>
+                                </li>
+                                <li>
+                                    <a href="" class="list-actions-button-edit">Edit</a>
+                                </li>
+                                <li>
+                                    <a href="" class="list-actions-button-delete">Delete</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>           
+        </list>
+        <p><a href="../club/club-form.html" class="button-add">Add</a></p>
+    </main>
+<%- include('../../fragments/footer.ejs') %>

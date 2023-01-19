@@ -1,0 +1,30 @@
+<%- include('./fragments/header.ejs')%>
+    <main>
+        <h2>Main page</h2>
+        <% if (info === false) {
+        }else { %>
+            <p>info: <%=infoContents%></p>
+        <% } %>
+        <% if(!loggedUser) { %>
+            <div id="login">
+                <h5>Logowanie</h5>
+                <form method="post" action="/login" novalidate>
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" name="email">
+                    <label for="loginPassword">Hasło:</label>
+                    <input type="password" id="loginPassword" name="password">
+                    <input type="submit" value="Zaloguj się">
+                    <span id="loginErrors"><%= loginError ? loginError : '' %></span>
+                </form>
+            </div>
+        <% } else { %>
+            <p>Jesteś zalogowany jako: <%= loggedUser.imie + " " + loggedUser.nazwisko %>, <a href="/logout">Wyloguj się</a>
+            </p>
+        <% } %>
+        <h5>Schemat bazy</h5>
+
+        <p>
+            Formula Kite is the equipment selected for the kiteboarding events in the 2024 Olympic Games but also for Regional Games (like the Panamerican and Central American & Caribbean Games), World and Continental Beach Games, the World Sailing World Championships, World Sailing Youth World Championships, and the Youth Olympic Games.
+        </p>
+    </main>
+<%- include('./fragments/footer.ejs')%>

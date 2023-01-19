@@ -1,0 +1,89 @@
+<%- include('../../fragments/header.ejs')%>
+    <main>
+        <script type="application/javascript" src="/js/validationClubForm.js"></script>        
+        <h2><%= pageTitle %></h2>
+
+        <form class="form" method="post" action="<%=formAction%>" ;">
+            <input type="hidden" name="_id" id="name" value="<%= club._id %>">
+
+            <label for="name">Club name: <span class="symbol-required"></span>*</label>
+            <input type="text" name="name" id="name" placeholder="3-60 characters" value="<%= club.name %>" class="<%= validationErrors.find(e=>e.path.includes('name')) ? 'error-input' : '' %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+            <span id="errorName" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                <% } %>
+            </span>
+
+            <label for="county">County: <span class="symbol-required"></span>*</label>
+            <input type="text" name="county" id="county" placeholder="3-60 characters" value="<%= club.county %>" class="<%= validationErrors.find(e=>e.path.includes('county')) ? 'error-input' : '' %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+            <span id="errorCounty" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                <% } %>
+            </span>
+
+            <label for="owner">Owner: <span class="symbol-required"></span>*</label>
+            <input type="text" name="owner" id="owner" placeholder="3-60 characters" value="<%= club.owner %>" class="<%= validationErrors.find(e=>e.path.includes('owner')) ? 'error-input' : '' %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+            <span id="errorOwner" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                <% } %>
+            </span>
+
+            <label for="budget">Budget:</span></label>
+            <input type="text" name="budget" id="budget" placeholder="3-60 characters" value="<%= club.budget %>" class="<%= validationErrors.find(e=>e.path.includes('budget')) ? 'error-input' : '' %>"
+             <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+            <span id="errorBudget" class="errors-text"></span>
+                <% if (validationErrors.find(e=> e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('name')).message %>
+                <% } %>
+            </span>
+
+            <% if (formMode == 'showDetails') { %>
+                <div class="section-buttons">
+                    <a class="list-actions-button-edit" href="/club/edit/<%= club._id %>">Edit</a>
+                </div>
+            <% } %>
+
+            <div class="form-buttons">
+                <p id="errorSummary" class="errors-text"></p>
+                <% if (formMode != 'showDetails') { %>
+                    <input type="submit" class="form-button-submit" value="<%=btnLabel%>"/>
+                    <a href="/club" class="form-button-cancel">Cancel</a>
+                <% } else { %>
+                    <a href="/club" class="form-button-cancel">Return</a>
+                <% } %>
+            </div>
+        </form>
+
+        <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+            <h2>Membership details</h2>
+            
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th>Competitor</th>
+                        <!-- <th>Birthdate</th> -->
+                        <th>Date from</th>
+                        <th>Date to</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <% for (let c of club.memberships) { %>
+                        <tr>
+                            <td><a href="/competitor/competitor-details/<%= c.competitor._id %>"><%= c.competitor %></a></td>
+                            <!-- .toISOString().split('T')[0] -->
+                            <!-- <td><%= c.competitor.birthdate %></td> -->
+                            <td><%= c.dateFrom %></td>
+                            <td><%= c.dateTo ? c.dateTo : '' %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <% } %>
+    </main>
+<%- include('../../fragments/footer.ejs')%>
