@@ -24,15 +24,6 @@
                 <% } %>
             </span>
 
-            <label for="email">Email: <span class="symbol-required"></span>*</label>
-            <input type="text" name="email" id="email" placeholder="3-60 characters" value="<%= competitor.email %>" class="<%= validationErrors.find(e=>e.path.includes('email')) ? 'error-input' : '' %>"
-             <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
-            <span id="errorEmail" class="errors-text"></span>
-                <% if (validationErrors.find(e=> e.path.includes('email'))) { %>
-                    <%= validationErrors.find(e=> e.path.includes('email')).message %>
-                <% } %>
-            </span>
-
             <label for="birthdate">Date of Birth: <span class="symbol-required"></span>*</label>
             <input type="date" name="birthdate" id="birthdate" value="<%= competitor.birthdate %>" class="<%= validationErrors.find(e=>e.path.includes('birthdate')) ? 'error-input' : '' %>"
              <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>

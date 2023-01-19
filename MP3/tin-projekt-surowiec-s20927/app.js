@@ -17,24 +17,6 @@ const clubApiRouter = require('./routes/api/ClubAPIRoute');
 const membershipApiRouter = require('./routes/api/MembershipAPIRoute');
 
 const sequelizeInit = require('./config/sequelize/init');
-
-const session = require('express-session');
-
-app.use(session({
-    secret: 'my_secret_password',
-    resave: false
-}))
-
-app.use((req, res, next) => {
-    const loggedUser = req.session.loggedUser;
-    res.locals.loggedUser = loggedUser;
-    if(!res.locals.loginError) {
-        res.locals.loginError = undefined;
-    }
-    next();
-});
-
-
 sequelizeInit()
     .catch(err => {
         console.log(err);

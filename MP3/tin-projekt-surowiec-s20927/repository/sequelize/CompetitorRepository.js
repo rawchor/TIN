@@ -24,7 +24,6 @@ exports.createCompetitor = (newCompetitorData) => {
     return Competitor.create({
         name: newCompetitorData.name,
         surname: newCompetitorData.surname,
-        email: newCompetitorData.email,
         birthdate: newCompetitorData.birthdate,
         dighy: newCompetitorData.dighy,
         sailNumber: newCompetitorData.sailNumber
@@ -34,7 +33,6 @@ exports.createCompetitor = (newCompetitorData) => {
 exports.updateCompetitor = (competitorId, competitorData) => {
     const name = competitorData.firstName;
     const surname = competitorData.lastName;
-    const email = competitorData.email;
     const birthdate = competitorData.address;
     const dighy = competitorData.zip_code;
     const sailNumber = competitorData.email;
@@ -46,9 +44,3 @@ exports.deleteCompetitor = (competitorId) => {
         where: { _id: competitorId }
     });
 }; 
-
-exports.findByEmail = (email) => {
-    return Competitor.findOne({
-        where: {email: email}
-    })
-}
