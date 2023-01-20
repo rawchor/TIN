@@ -16,6 +16,26 @@ const competitorApiRouter = require('./routes/api/CompetitorAPIRoute');
 const clubApiRouter = require('./routes/api/ClubAPIRoute');
 const membershipApiRouter = require('./routes/api/MembershipAPIRoute');
 
+// logowanie
+const session = require('express-session');
+
+app.use(session({
+    secret: 'mu_secret_password',
+    resave: false
+}));
+
+app.use((req, res, next) => {
+    const loggedUser = req.session.loggedUser;
+    res.locals.loggedUser = loggedUser;
+    if(!res.locals.loginError) {
+        res.locals.loginError = undefined;
+    }
+    next();
+});
+
+//app.use('/competitors', authUtils.permitAuthenticateduser, competitorRouter);
+
+
 const sequelizeInit = require('./config/sequelize/init');
 sequelizeInit()
     .catch(err => {

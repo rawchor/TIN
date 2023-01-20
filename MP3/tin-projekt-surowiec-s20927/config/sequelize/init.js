@@ -1,4 +1,7 @@
 const sequelize = require('./sequelize');
+// logowanie
+const authUtil = require('../../util/authUtils');
+const passHash = authUtil.hashPassword('12345');
 
 const Competitor = require('../../model/sequelize/Competitor');
 const Club = require('../../model/sequelize/Club');
@@ -19,10 +22,10 @@ module.exports = () => {
         .then(competitors => {
             if( !competitors || competitors.length == 0 ) {
                 return Competitor.bulkCreate([
-                    {name: 'Borys', surname: 'Surowiec', birthdate: '2000-11-15', dighy: 'Laser', sailNumber: '183368'},
-                    {name: 'Przemek', surname: 'Okoński', birthdate: '2003-06-09', dighy: 'Laser', sailNumber: '190758'},
-                    {name: 'Jakub', surname: 'Rosłoń', birthdate: '1995-03-23', dighy: 'Laser', sailNumber: '210000'},
-                    {name: 'Tomek', surname: 'Kowalski', birthdate: '2000-10-10', dighy: 'Laser', sailNumber: '000000'},
+                    {name: 'Borys', surname: 'Surowiec', birthdate: '2000-11-15', email: 'ultimategingermaster@gmail.com', password: passHash, dighy: 'Laser', sailNumber: '183368'},
+                    {name: 'Przemek', surname: 'Okoński', birthdate: '2003-06-09', email: '1@gmail.com', password: passHash, dighy: 'Laser', sailNumber: '190758'},
+                    {name: 'Jakub', surname: 'Rosłoń', birthdate: '1995-03-23', email: '2@gmail.com', password: passHash, dighy: 'Laser', sailNumber: '210000'},
+                    {name: 'Tomek', surname: 'Kowalski', birthdate: '2000-10-10', email: '3@gmail.com', password: passHash, dighy: 'Laser', sailNumber: '000000'},
                 ])
                 .then( () => {
                     return Competitor.findAll();

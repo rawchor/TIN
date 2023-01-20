@@ -34,6 +34,23 @@ const Competitor = sequelize.define('Competitor', {
       },
     }
   },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: {
+          msg: "Field is required"
+      },
+      len: {
+          args: [3, 60],
+          msg: "Field should contain 3-60 characters"
+      },
+    }
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   birthdate: {
     type: Sequelize.DATEONLY,
     allowNull: false,
