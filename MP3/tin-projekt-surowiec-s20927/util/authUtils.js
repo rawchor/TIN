@@ -12,18 +12,18 @@ exports.comparePasswords = (passPlain, passHash) => {
     return res;
 }
 
-exports.permitAuthenticatedUser = (req, res, next) => {
+exports.permitAuthenticatedCompetitor = (req, res, next) => {
     const loggedCompetitor = req.session.loggedCompetitor;
     if(loggedCompetitor) {
         next();
     } else {
-        // res.render('index', {
-        //     komunikat: true,
-        //     komunikatTresc: 'Brak dostępu! Zaloguj się',
-        //     kolorKomunikatu: 'red',
-        //     pageTitle: 'Sklep internetowy',
-        //     navLocation: 'main'
-        // })
+        res.render('index', {
+            // komunikat: true,
+            // komunikatTresc: 'Brak dostępu! Zaloguj się',
+            // kolorKomunikatu: 'red',
+            pageTitle: 'Sklep internetowy',
+            navLocation: 'main'
+        })
         throw new Error('unauthorized access');
     }
 }

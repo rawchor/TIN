@@ -1,0 +1,146 @@
+{
+	"content": "content",
+	"title": {
+		"content": "Strona główna",
+		"text": "Formula Kite to sprzęt wybrany na imprezy kiteboardingowe na Igrzyskach Olimpijskich 2024, ale także na Igrzyska Regionalne (takie jak Igrzyska Panamerykańskie, Środkowoamerykańskie i Karaibskie), Światowe i Kontynentalne Igrzyska Plażowe, Mistrzostwa Świata w Żeglarstwie, Mistrzostwa Świata Młodzieży w Żeglarstwie, i Igrzyska Olimpijskie Młodzieży.",
+		"title": "PZŻ Członkowstwo Klubowe"
+	},
+	"competitor": {
+		"fields": {
+			"name": {
+				"label": "Imie"
+			},
+			"surname": {
+				"label": "Nazwisko"
+			},
+			"email": {
+				"label": "Email"
+			},
+			"birthdate": {
+				"label": "Data urodzin"
+			},
+			"dighy": {
+				"label": "Klasa"
+			},
+			"sailNumber": {
+				"label": "Numer Żagla"
+			},
+			"Surname": {
+				"label": "competitor.fields.Surname.label"
+			}
+		},
+		"name": "Imie",
+		"form": {
+			"edit": {
+				"pageTitle": "Edytuj Zawodnika"
+			},
+			"add": {
+				"pageTitle": "Dodaj zawodnika"
+			},
+			"details": {
+				"pageTitle": "competitor.form.details.pageTitle"
+			}
+		},
+		"list": {
+			"pageTitle": "competitor.list.pageTitle"
+		}
+	},
+	"membership": {
+		"fields": {
+			"competitor": {
+				"label": "Zawodnik"
+			},
+			"club": {
+				"label": "Klub"
+			},
+			"dateFrom": {
+				"label": "Data od"
+			},
+			"dateTo": {
+				"label": "Data do"
+			}
+		},
+		"name": "Competitor",
+		"form": {
+			"edit": {
+				"pageTitle": "Edit Competitor"
+			},
+			"add": {
+				"pageTitle": "Add competitor"
+			}
+		},
+		"list": {
+			"pageTitle": "competitor.list.pageTitle"
+		}
+	},
+	"club": {
+		"fields": {
+			"name": {
+				"label": "Name"
+			},
+			"surname": {
+				"label": "Surname"
+			},
+			"email": {
+				"label": "Email"
+			},
+			"birthdate": {
+				"label": "Birthdate"
+			},
+			"dighy": {
+				"label": "Dighy"
+			},
+			"sailNumber": {
+				"label": "Sail Number"
+			}
+		},
+		"name": "Competitor",
+		"form": {
+			"edit": {
+				"pageTitle": "Edit Competitor"
+			},
+			"add": {
+				"pageTitle": "Add competitor"
+			}
+		},
+		"list": {
+			"pageTitle": "competitor.list.pageTitle"
+		}
+	},
+	"pageTitle": {
+		"competitorList": "Lista Zawodników",
+		"membershipList": "Lista Członkowstwa",
+		"clubList": "Lista Klubów",
+		"competitorForm": "Nowy Zawodnik",
+		"membershipForm": "Nowe Członkowstwo",
+		"clubForm": "Nowy Klub"
+	},
+	"list": {
+		"actions": {
+			"title": "Akcje"
+		}
+	},
+	"navList": {
+		"main": "Główna",
+		"competitor": "Zawodnik",
+		"membership": "Członkowstwo",
+		"clubs": "Kluby",
+		"account": "Konto"
+	},
+	"buttons": {
+		"details": "Info",
+		"edit": "Edytuj",
+		"delete": "Usuń",
+		"add": "Dodaj",
+		"cancel": "Anuluj",
+		"competitor": {
+			"addCompetitor": "Dodaj zawodnika"
+		},
+		"membership": {
+			"addMembership": "Dodaj członkowstwo"
+		},
+		"club": {
+			"addClub": "Dodaj klub"
+		}
+	}
+}

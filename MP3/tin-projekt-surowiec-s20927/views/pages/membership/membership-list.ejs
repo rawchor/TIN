@@ -1,14 +1,14 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Membership</h2>
+        <h2><%= __('pageTitle.membershipList') %></h2>
         <list>
             <table class="table-list">
                 <thead>
-                    <th>Competitor</th>
-                    <th>Club</th>
-                    <th>Date from</th>
-                    <th>Date to</th>
-                    <th>Actions</th>
+                    <th><%= __('membership.fields.competitor.label') %></th>
+                    <th><%= __('membership.fields.club.label') %></th>
+                    <th><%= __('membership.fields.dateFrom.label') %></th>
+                    <th><%= __('membership.fields.dateTo.label') %></th>
+                    <th><%= __('list.actions.title') %></th>
                 </thead>
 
                 <tbody>
@@ -21,13 +21,13 @@
                         <td>
                             <ul class="list-actions">
                                 <li>
-                                    <a href="/membership/details/<%= membership._id %>" class="list-actions-button-details">Details</a>
+                                    <a href="/membership/details/<%= membership._id %>" class="list-actions-button-details"><%= __('buttons.details') %></a>
                                 </li>
                                 <li>
-                                    <a href="/membership/edit/<%= membership._id %>" class="list-actions-button-edit">Edit</a>
+                                    <a href="/membership/edit/<%= membership._id %>" class="list-actions-button-edit"><%= __('buttons.edit') %></a>
                                 </li>
                                 <li>
-                                    <a href="/membership/delete/<%= membership._id %>" class="list-actions-button-delete">Delete</a>
+                                    <a href="/membership/delete/<%= membership._id %>" class="list-actions-button-delete"><%= __('buttons.delete') %></a>
                                 </li>
                             </ul>
                         </td>
@@ -36,6 +36,6 @@
                 </tbody>
             </table>           
         </list>
-        <p><a href="/membership/add" class="button-add">Add</a></p>
+        <p><a href="/membership/add" class="button-add"><%= __('buttons.add') %></a></p>
     </main>
 <%- include('../../fragments/footer.ejs') %>

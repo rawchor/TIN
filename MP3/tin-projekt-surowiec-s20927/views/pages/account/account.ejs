@@ -7,7 +7,7 @@
                 <h5>Login page</h5>
                 <form method="post" action="/login" novalidate>
                     <label for="loginEmail">Email:</label>
-                    <input type="email" id="loginEmail" name="email">
+                    <input type="text" id="loginEmail" name="email">
         
                     <label for="loginPassword">Password:</label>
                     <input type="password" id="loginPassword" name="password">
@@ -22,3 +22,24 @@
         <% } %>
     </main>
 <%- include('../../fragments/footer.ejs') %>
+
+ <!-- <main>
+        <% if(!loggedCompetitor) { %>
+            <div id="login">
+                <h5>Login page</h5>
+                <form method="post" action="/login" novalidate>
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" name="email">
+        
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" name="password">
+        
+                    <input type="submit" value="Log in">
+                    <span id="loginErrors"><%= loginError ? loginError : ''%></span>
+                </form>
+            </div>
+        <% } else { %>
+            <span>You are logged in as: <%=loggedCompetitor.Name + " " + loggedCompetitor.Surname%></span>
+            <a href="/logout" class="list-actions-button-delete">Logout</a>
+        <% } %>
+    </main> -->

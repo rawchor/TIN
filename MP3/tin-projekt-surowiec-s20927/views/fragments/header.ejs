@@ -4,23 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>PZŻ club membership</title>
+    <title><%= __('title.title') %></title>
 
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" href="/images/websiteclasslogo_favicon.png" type="image/x-icon">
 </head>
 <body>
     <header>
-        <h1>PZŻ club membership</h1>
+        <h1><%= __('title.title') %></h1>
         <img src="/images/mobile_white.png" alt="PSKL logo" width="50%" height="auto">
     </header>
 
     <nav>
         <ul>
-            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Main page</a></li>
-            <li><a href="/competitor" class="<%= navLocation == 'competitor' ? 'active' : ''%>">Competitor</a></li>
-            <li><a href="/membership" class="<%= navLocation == 'membership' ? 'active' : ''%>">Membership</a></li>
-            <li><a href="/club" class="<%= navLocation == 'club' ? 'active' : ''%>">Clubs</a></li>
-            <li><a href="/account" class="<%= navLocation == 'account' ? 'active' : ''%>">Account</a></li>
+            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>"><%= __('navList.main') %></a></li>
+            <li><a href="/competitor" class="<%= navLocation == 'competitor' ? 'active' : ''%>"><%= __('navList.competitor') %></a></li>
+            <li><a href="/membership" class="<%= navLocation == 'membership' ? 'active' : ''%>"><%= __('navList.membership') %></a></li>
+            <li><a href="/club" class="<%= navLocation == 'club' ? 'active' : ''%>"><%= __('navList.clubs') %></a></li>
+            <li><a href="/account" class="<%= navLocation == 'account' ? 'active' : ''%>"><%= __('navList.account') %></a></li>
+            <!-- <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : ''%>">PL</a></li>
+            <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : ''%>">EN</a></li> -->
         </ul>
     </nav>
+
+    <nav>
+        <ul>
+            <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : ' ' %>">PL</a></li>
+            <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : ' ' %>">EN</a></li>
+        </ul>
+    </nav>
+
+   

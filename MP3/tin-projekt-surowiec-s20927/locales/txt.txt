@@ -1,0 +1,63 @@
+{
+	"title": {
+		"content": "Strona główna"
+	},
+    "main-page": {
+		"content": "Strona główna"
+	},
+	"nav": {
+		"main-page": "Strona główna",
+		"competitors": "Zawodnicy",
+		"clubs": "Kluby",
+		"memberships": "Zatrudnienie"
+	},
+    "list": {
+       "actions": {
+          "title": "Akcje",
+          "details": "Szczegóły",
+          "edit": "Edytuj",
+          "delete": "Usuń"
+       }
+    },
+   "form": {
+      "actions": {
+         "return": "Powrót",
+         "edit": "Edytuj",
+         "cancel": "Anuluj"
+      }
+   },
+	"competitor": {
+		"fields": {
+			"name": "Imię",
+			"surname": "Nazwisko",
+			"email": "Email",
+            "birthdate": "Data urodzin",
+            "dighy": "Klasa"
+		},
+		"list": {
+			"title": "Zawodnicy",
+			"addNew": "Dodaj nowego zawodnika",
+			"noData": "Brak zawodników w bazie",
+			"pageTitle": "Lista zawodników"
+		},
+		"form": {
+			"membership": "Historia zatrudnienia",
+			"add": {
+				"pageTitle": "Dodawanie zawodnika",
+				"btnLabel": "Dodaj zawodnika",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano zawodnika"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja zawodnika",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano zawodnika"
+				}
+			}
+		}
+	}
+}

@@ -5,6 +5,7 @@ exports.showCompetitorList = (req, res, next) => {
         .then(competitor => {
             res.render('pages/competitor/competitor-list', {
                 competitors: competitor,
+                pageTitle: req.__('competitor.list.pageTitle'),
                 navLocation: 'competitor'
             });
         });
@@ -13,7 +14,7 @@ exports.showCompetitorList = (req, res, next) => {
 exports.showAddCompetitorForm = (req, res, next) => {
     res.render('pages/competitor/competitor-form', {
         competitor: {},
-        pageTitle: 'New competitor',
+        pageTitle: req.__('competitor.form.add.pageTitle'),
         formMode: 'createNew',
         btnLabel: 'Add competitor',
         formAction: '/competitor/add',
@@ -29,7 +30,7 @@ exports.showEditCompetitorForm = (req, res, next) => {
             res.render('pages/competitor/competitor-form', {
                 competitor: competitor,
                 formMode: 'edit',
-                pageTitle: 'Competitor Edit',
+                pageTitle: req.__('competitor.form.edit.pageTitle'),
                 btnLabel: 'Edit Competitor',
                 formAction: '/competitor/edit',
                 navLocation: 'competitor',
@@ -46,7 +47,7 @@ exports.showCompetitorDetails = (req, res, next) => {
           res.render('pages/competitor/competitor-form', {
               competitor: competitor,
               formMode: 'showDetails',
-              pageTitle: 'Competitor Details',
+              pageTitle: req.__('competitor.form.details.pageTitle'),
               formAction: '',
               navLocation: 'competitor',
               validationErrors: []

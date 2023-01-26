@@ -1,15 +1,15 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
-        <h2>Competitors</h2>
+        <h2><%= __('pageTitle.competitorList') %></h2>
         <table class="table-list">
             <thead>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Email</th>
-                <th>Date of birth</th>
-                <th>Dighy</th>
-                <th>Sailing number</th>
-                <th>Actions</th>
+                <th><%= __('competitor.fields.name.label') %></th>
+                <th><%= __('competitor.fields.surname.label') %></th>
+                <th><%= __('competitor.fields.email.label') %></th>
+                <th><%= __('competitor.fields.birthdate.label') %></th>
+                <th><%= __('competitor.fields.dighy.label') %></th>
+                <th><%= __('competitor.fields.sailNumber.label') %></th>
+                <th><%= __('list.actions.title') %></th>
             </thead>
 
             <tbody>
@@ -24,13 +24,13 @@
                     <td>
                         <ul class="list-actions">
                             <li>
-                                <a href="/competitor/details/<%= competitor._id %>" class="list-actions-button-details">Details</a>
+                                <a href="/competitor/details/<%= competitor._id %>" class="list-actions-button-details"><%= __('buttons.details') %></a>
                             </li>
                             <li>
-                                <a href="/competitor/edit/<%= competitor._id %>" class="list-actions-button-edit">Edit</a>
+                                <a href="/competitor/edit/<%= competitor._id %>" class="list-actions-button-edit"><%= __('buttons.edit') %></a>
                             </li>
                             <li>
-                                <a href="/competitor/delete/<%= competitor._id %>" class="list-actions-button-delete">Delete</a>
+                                <a href="/competitor/delete/<%= competitor._id %>" class="list-actions-button-delete"><%= __('buttons.delete') %></a>
                             </li>
                         </ul>
                     </td>
@@ -38,6 +38,6 @@
             <% } %>
             </tbody>
         </table>
-        <p><a href="/competitor/add" class="button-add">Add</a></p>
+        <p><a href="/competitor/add" class="button-add"><%= __('buttons.add') %></a></p>
     </main>
 <%- include('../../fragments/footer.ejs') %>

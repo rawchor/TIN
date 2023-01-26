@@ -8,6 +8,49 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
+const sequelizeInit = require('./config/sequelize/init');
+sequelizeInit()
+    .catch(err => {
+        console.log(err);
+    });
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// languages
+const i18n = require('i18n');
+const { permitAuthenticatedCompetitor } = require('./util/authUtils');
+i18n.configure({
+   locales: ['pl', 'en'], // języki dostępne w aplikacji. Dla każdego z nich należy utworzyć osobny słownik 
+   directory: path.join(__dirname, 'locales'), // ścieżka do katalogu, w którym znajdują się słowniki
+   objectNotation: true, // umożliwia korzstanie z zagnieżdżonych kluczy w notacji obiektowej
+   cookie: 'acme-hr-lang', //nazwa cookies, które nasza aplikacja będzie wykorzystywać do przechowania informacji o języku aktualnie wybranym przez użytkownika
+});
+app.use(i18n.init); //inicjalizacja i połączenie do kontekstu aplikacji
+
+app.use(cookieParser('secret'));
+
+//logged in
+// app.use((req, res, next) => {
+//     const loggedCompetitor = req.session.loggedCompetitor;
+//     console.log(loggedCompetitor);
+//     console.log(req.session.loggedCompetitor);
+//     res.locals.loggedCompetitor = { email: 'ultimategingermaster@gmail.com', password: '12345'  };  
+
+//     res.locals.loggedCompetitor = loggedCompetitor;
+//     if(!res.locals.loginError) {
+//         res.locals.loginError = undefined;
+//     }
+//     next();
+// });
+
 const competitorRouter = require('./routes/competitorRoute');
 const clubRouter = require('./routes/clubRoute');
 const membershipRouter = require('./routes/membershipRoute');
@@ -24,33 +67,17 @@ app.use(session({
     resave: false
 }));
 
+//app.use('/competitor', authUtils.permitAuthenticatedCompetitor, competitorRouter);
+
+// lang
+
 app.use((req, res, next) => {
-    const loggedUser = req.session.loggedUser;
-    res.locals.loggedUser = loggedUser;
-    if(!res.locals.loginError) {
-        res.locals.loginError = undefined;
+    if(!res.locals.lang) {
+        const currentLang = req.cookies['acme-hr-lang'];
+        res.locals.lang = currentLang;
     }
     next();
 });
-
-//app.use('/competitors', authUtils.permitAuthenticateduser, competitorRouter);
-
-
-const sequelizeInit = require('./config/sequelize/init');
-sequelizeInit()
-    .catch(err => {
-        console.log(err);
-    });
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/competitor', competitorRouter);

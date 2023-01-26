@@ -1,0 +1,140 @@
+{
+	"content": "content",
+	"title": {
+		"content": "Main page",
+		"text": "Formula Kite is the equipment selected for the kiteboarding events in the 2024 Olympic Games but also for Regional Games (like the Panamerican and Central American & Caribbean Games), World and Continental Beach Games, the World Sailing World Championships, World Sailing Youth World Championships, and the Youth Olympic Games.",
+		"title": "PZŻ Club Membership"
+	},
+	"competitor": {
+		"fields": {
+			"name": {
+				"label": "Name"
+			},
+			"surname": {
+				"label": "Surname"
+			},
+			"email": {
+				"label": "Email"
+			},
+			"birthdate": {
+				"label": "Birthdate"
+			},
+			"dighy": {
+				"label": "Dighy"
+			},
+			"sailNumber": {
+				"label": "Sail Number"
+			}
+		},
+		"name": "Competitor",
+		"form": {
+			"edit": {
+				"pageTitle": "Edit Competitor"
+			},
+			"add": {
+				"pageTitle": "Add competitor"
+			}
+		},
+		"list": {
+			"pageTitle": "competitor.list.pageTitle"
+		}
+	},
+	"membership": {
+		"fields": {
+			"competitor": {
+				"label": "Competitor"
+			},
+			"club": {
+				"label": "Club"
+			},
+			"dateFrom": {
+				"label": "Date Form"
+			},
+			"dateTo": {
+				"label": "Date To"
+			}
+		},
+		"name": "Competitor",
+		"form": {
+			"edit": {
+				"pageTitle": "Edit Competitor"
+			},
+			"add": {
+				"pageTitle": "Add competitor"
+			}
+		},
+		"list": {
+			"pageTitle": "competitor.list.pageTitle"
+		}
+	},
+	"club": {
+		"fields": {
+			"name": {
+				"label": "Name"
+			},
+			"surname": {
+				"label": "Surname"
+			},
+			"email": {
+				"label": "Email"
+			},
+			"birthdate": {
+				"label": "Birthdate"
+			},
+			"dighy": {
+				"label": "Dighy"
+			},
+			"sailNumber": {
+				"label": "Sail Number"
+			}
+		},
+		"name": "Competitor",
+		"form": {
+			"edit": {
+				"pageTitle": "Edit Competitor"
+			},
+			"add": {
+				"pageTitle": "Add competitor"
+			}
+		},
+		"list": {
+			"pageTitle": "competitor.list.pageTitle"
+		}
+	},
+	"pageTitle": {
+		"competitorList": "Competitor List",
+		"membershipList": "Membership List",
+		"clubList": "Club List",
+		"competitorForm": "New Competitor",
+		"membershipForm": "New Membership",
+		"clubForm": "New Club"
+	},
+	"list": {
+		"actions": {
+			"title": "Actions"
+		}
+	},
+	"navList": {
+		"main": "Main page",
+		"competitor": "Competitor",
+		"membership": "Membership",
+		"clubs": "Clubs",
+		"account": "Account"
+	},
+	"buttons": {
+		"details": "Details",
+		"edit": "Edit",
+		"delete": "Delete",
+		"add": "Add",
+		"cancel": "Cancel",
+		"competitor": {
+			"addCompetitor": "Add competitor"
+		},
+		"membership": {
+			"addMembership": "Add membership"
+		},
+		"club": {
+			"addClub": "Add club"
+		}
+	}
+}
